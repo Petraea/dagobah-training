@@ -38,7 +38,7 @@ class: special, center, middle
 ---
 # Training Home
 
-## [bit.ly/saltgalaxy](https://bit.ly/saltgalaxy)
+## [bit.ly/melbgalaxy](https://bit.ly/melbgalaxy)
 .large[
 * The homepage of this training is a repository at GitHub reachable by the link above.
 * Most materials are written in Markdown and we encourage Pull Requests (even during the training!).
@@ -49,15 +49,15 @@ class: special, center, middle
 .large[
 We did our best to plan the session times for the expected content, and to build the content for the session time.
 
-Almost all of this content is new, there may be sessions that are too long or short - apologies in advance.
+Almost all of this content is new or revised, there may be sessions that are too long or short - apologies in advance.
 ]
 ---
 # Communication channels
 .large[
 * Web browser based chat at https://gitter.im/dagobah-training/Lobby.
-* Mailing list `gat2016@lists.galaxyproject.org`
+* Mailing list ??
 ]
-.footnote[[bit.ly/saltgalaxy](https://bit.ly/saltgalaxy)]
+.footnote[[bit.ly/melbgalaxy](https://bit.ly/melbgalaxy)]
 
 ---
 # Useful Links
@@ -67,7 +67,7 @@ Almost all of this content is new, there may be sessions that are too long or sh
 - https://wiki.galaxyproject.org/ 
 - (notably https://wiki.galaxyproject.org/Admin)
 ]
-.footnote[[bit.ly/saltgalaxy](https://bit.ly/saltgalaxy)]
+.footnote[[bit.ly/melbgalaxy](https://bit.ly/melbgalaxy)]
 
 ---
 # Thanks
@@ -77,7 +77,7 @@ Almost all of this content is new, there may be sessions that are too long or sh
 - Chris Samuels
 - **Dave Clements**
 ]
-.footnote[[bit.ly/saltgalaxy](https://bit.ly/saltgalaxy)]
+.footnote[[bit.ly/melbgalaxy](https://bit.ly/melbgalaxy)]
 
 ---
 # Hosts
@@ -87,11 +87,11 @@ We would like to thank:
 - [Victorian Life Sciences Computation Initiative, University of Melbourne (VLSCI)](http://vlsci.org.au/)
 - [Carlton Connect Initiative, University of Melbourne](https://www.carltonconnect.com.au/)
 ]
-.footnote[[bit.ly/saltgalaxy](https://bit.ly/saltgalaxy)]
+.footnote[[bit.ly/melbgalaxy](https://bit.ly/melbgalaxy)]
 
 ---
 # Future events
 .large[
 June 26-30, Galaxy Community Conference (GCC2017) - Montpellier, France
 ]
-.footnote[[bit.ly/saltgalaxy](https://bit.ly/saltgalaxy)]
+.footnote[[bit.ly/melbgalaxy](https://bit.ly/melbgalaxy)]
