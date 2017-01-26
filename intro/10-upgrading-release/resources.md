@@ -9,7 +9,7 @@
 - Process
   - Release notes
   - Git pull
-  - Manage_db.sh upgrade
+  - manage_db.sh upgrade
   - Compare configs
   - Restart server
 - hg to git procedure (if audience needs)
