@@ -90,6 +90,13 @@ We would like to thank:
 .footnote[[bit.ly/melbgalaxy](https://bit.ly/melbgalaxy)]
 
 ---
+# Computing resources
+
+The computing resources for this training have been provided by the VLSCI via the [Nectar Cloud](https://nectar.org.au/research-cloud/)
+
+You will each receive an IP address of your own instance. Put it somewhere easy to copy/paste.
+
+---
 # Future events
 .large[
 June 26-30, Galaxy Community Conference (GCC2017) - Montpellier, France

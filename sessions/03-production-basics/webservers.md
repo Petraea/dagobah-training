@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Web Servers</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
-  </head>
-  <body>
-    <textarea id="source">
 layout: true
 class: inverse, large
 
@@ -14,7 +5,7 @@ class: inverse, large
 class: special, middle
 # (Proxy) Web Server Choices and Configuration
 
-Introduction to Apache and NGINX
+Introduction to NGINX (and Apache)
 
 slides by @natefoo
 
@@ -33,7 +24,7 @@ Extra features:
 - Serve byte range requests
 - Serve other sites from the same server
 - Can provide authentication
-  - Covered in: Thursday, 9:20: Using and configuring external authentication services
+  - Covered: Tuesday: Using and configuring external authentication services
 
 Some of these features are available directly in uWSGI (covered Wednesday)
 
@@ -43,11 +34,6 @@ Some of these features are available directly in uWSGI (covered Wednesday)
 - The most popular web server
 - Many authentication plugins written for Apache
 - Can offload file downloads
-
----
-# Exercise: Apache
-
-[Apache as a Reverse Proxy for Galaxy - Exercise](https://github.com/martenson/dagobah-training/blob/master/intro/04-web-servers/ex1-apache.md)
 
 ---
 # nginx
@@ -79,7 +65,12 @@ There is also a "Galaxy" flavor<sup>[1]</sup> (includes [upload module](https://
 ---
 # Exercise: nginx
 
-[nginx as a Reverse Proxy for Galaxy - Exercise](https://github.com/martenson/dagobah-training/blob/master/intro/04-web-servers/ex2-nginx.md)
+[nginx as a Reverse Proxy for Galaxy - Exercise](https://github.com/martenson/dagobah-training/blob/master/sessions/03-production-basics/ex3-nginx.md)
+
+---
+# Exercise: Apache
+
+[Apache as a Reverse Proxy for Galaxy - Exercise](https://github.com/gvlproject/dagobah-training/blob/master/sessions/03-production-basics/ex4-apache.md)
 
 ---
 # Additional Tips and Resources
@@ -102,13 +93,6 @@ Why switch to uWSGI?
 - Greater scalability
 - Hundreds of other features (see [docs](http://uwsgi-docs.readthedocs.io/en/latest/))
 
-uWSGI will become the default: Watch [Pull Request #2802](https://github.com/galaxyproject/galaxy/pull/2802)
+Covered: Tuesday: Improving the web serving experience with uWSGI
 
-    </textarea>
-    <script src="../static/remark-latest.min.js">
-    </script>
-    <script>
-      var slideshow = remark.create();
-    </script>
-  </body>
-</html>
+uWSGI will become the default: Watch [Galaxy Pull Request #2802](https://github.com/galaxyproject/galaxy/pull/2802), [Starforge Pull Request #118](https://github.com/galaxyproject/starforge/pull/118)

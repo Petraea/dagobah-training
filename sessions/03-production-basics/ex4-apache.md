@@ -27,6 +27,10 @@ Creating a reverse proxy from Apache to Galaxy provides a number of features not
 - Serve other sites from the same server
 - Can provide authentication
 
+## Section 0 - Before you begin
+
+If you completed the nginx exercise, it will bound to port 80, which will prevent Apache from doing the same. You can stop nginx with `systemctl stop nginx` and then prevent it from starting automatically with `systemctl disable nginx`.
+
 ## Section 1 - Installation and basic configuration
 
 **Part 1 - Install Apache**

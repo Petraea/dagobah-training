@@ -155,20 +155,35 @@ You can load remote content to this iframe (blog, existing presentation, etc.).
 .footnote[<sup>[1]</sup> Registering in the UI *before* setting `admin_users` is not strictly necessary, but is the best security practice]
 
 ---
+# Start/stop in the background
+
+Start:
+```shell
+$ sh run.sh --daemon
+  ...
+Activating virtualenv at .venv
+Entering daemon mode
+```
+
+Monitor:
+```
+$ tail -f paster.log
+  ...
+Starting server in PID 1469.
+serving on http://127.0.0.1:8080
+^C
+
+Stop:
+```console
+$ sh run.sh --stop-daemon
+```
+
+---
 # Be secure
 
-```console
-$ sudo -l
-User ubuntu may run the following commands on server-f5d67052-36ac-40f5-abf7-14939e479df2.novalocal:
-    (ALL : ALL) ALL
-    (ALL) NOPASSWD: ALL
-```
+You are running Galaxy as an **admin** user with **sudo** privileges (that's bad)!
 
-Let's create a Galaxy user:
-
-```console
-foo
-```
+We'll fix this shortly.
 
 ---
 # What to do next?

@@ -30,15 +30,15 @@ Your questions are bound to be answered.
 * **PostgreSQL**
   * The recommended standard for anything serious.
 * ~~MySQL~~
-  * Supported in past but Galaxy is not tested against it anymore.
+  * Supported but Galaxy is not tested against it.
 
 ---
 # Configuration
 
 `database_connection` is specified as a connection string in `galaxy.ini` file.
-  * default SQLite `sqlite:///./database/universe.sqlite?isolation_level=IMMEDIATE`
-  * local PostgreSQL `postgres://<name>:<password>@localhost:5432/galaxy`
-  * production example `postgresql:///galaxy?host=/var/run/postgresql`
+  * Default SQLite: `sqlite:///./database/universe.sqlite?isolation_level=IMMEDIATE`
+  * Local PostgreSQL (socket) `postgresql:///<db_name>?host=/var/run/postgresql`
+  * Network PostgreSQL: `postgresql://<name>:<password>@<host>:5432/<db_name>`
 
 ---
 # Tuning - pool
@@ -58,11 +58,13 @@ If large database query results are causing memory or response time issues in th
 
 Galaxy can track Tool Shed data in a separate DB.
 
-```shell
+```ini
 install_database_connection = sqlite:///./database/universe.sqlite?isolation_level=IMMEDIATE
 ```
 
-This allows bootstrapping fresh Galaxy instances with pretested installs.
+This allows:
+* Bootstrapping fresh Galaxy instances with prebuilt/tested tool sets
+* Atomic installation/rollback (esp. w/ sqlite)
 
 ???
 All other database config options but prefixed with `install_` are also available.
@@ -70,7 +72,7 @@ All other database config options but prefixed with `install_` are also availabl
 ---
 # Migrations
 
-The changes in DB model are captured incrementally in form of [atomic scripts](https://github.com/galaxyproject/galaxy/tree/dev/lib/galaxy/model/migrate/versions).
+The changes in DB model are captured incrementally in the form of [atomic scripts](https://github.com/galaxyproject/galaxy/tree/dev/lib/galaxy/model/migrate/versions).
 
 Each script can both upgrade and downgrade a DB.
 
@@ -102,4 +104,4 @@ $ python -i scripts/db_shell.py
 ---
 # Exercise
 
-[Connecting Galaxy to PostgreSQL - Exercise](https://github.com/martenson/dagobah-training/blob/master/intro/03-databases/ex1-postgres.md)
+[Connecting Galaxy to PostgreSQL - Exercise](https://github.com/gvlproject/dagobah-training/blob/master/sessions/03-production-basics/ex2-postgres.md)

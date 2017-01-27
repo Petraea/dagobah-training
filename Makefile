@@ -8,8 +8,9 @@ generate-slides:
 	$(IN_VENV) python slideshow/build_slideshow.py 'Welcome and Introduction' sessions/00-intro/intro.md 00-intro
 	$(IN_VENV) python slideshow/build_slideshow.py 'Deployment and Platform Options' sessions/01-deployment-platforms/choices.md 01-deployment-platforms
 	$(IN_VENV) python slideshow/build_slideshow.py 'Get Galaxy' sessions/02-basic-server/get-galaxy.md 02-basic-server
-	$(IN_VENV) python slideshow/build_slideshow.py 'Galactic Database' sessions/03-databases/databases.md 03-databases
-	$(IN_VENV) python slideshow/build_slideshow.py 'Web Servers' sessions/04-web-servers/webservers.md 04-web-servers
+	$(IN_VENV) python slideshow/build_slideshow.py 'Production Basics' sessions/03-production-basics/production.md 03-production-basics
+	$(IN_VENV) python slideshow/build_slideshow.py 'Galactic Database' sessions/03-production-basics/databases.md 03-production-basics
+	$(IN_VENV) python slideshow/build_slideshow.py 'Web Servers' sessions/03-production-basics/webservers.md 03-production-basics
 	$(IN_VENV) python slideshow/build_slideshow.py 'Tool Shed' sessions/05-tool-shed/shed_intro.md 05-tool-shed
 	$(IN_VENV) python slideshow/build_slideshow.py 'Tool Dependencies' sessions/05-tool-shed/tool-dependencies.md 05-tool-shed
 	$(IN_VENV) python slideshow/build_slideshow.py 'Tool Installation' sessions/05-tool-shed/tool_installation.md 05-tool-shed
