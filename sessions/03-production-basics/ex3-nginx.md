@@ -58,9 +58,9 @@ Hit:6 http://ppa.launchpad.net/webupd8team/java/ubuntu xenial InRelease
 Get:7 http://ppa.launchpad.net/galaxyproject/nginx/ubuntu xenial/main amd64 Packages [2,468 B]
 Get:8 http://ppa.launchpad.net/galaxyproject/nginx/ubuntu xenial/main i386 Packages [2,480 B]
 Get:9 http://ppa.launchpad.net/galaxyproject/nginx/ubuntu xenial/main Translation-en [1,660 B]
-Fetched 24.7 kB in 2s (11.7 kB/s)           
+Fetched 24.7 kB in 2s (11.7 kB/s)
 Reading package lists... Done
-Building dependency tree       
+Building dependency tree
 Reading state information... Done
 62 packages can be upgraded. Run 'apt list --upgradable' to see them.
 $
@@ -72,7 +72,7 @@ Then install nginx:
 
 $ sudo apt install nginx-extras
 Reading package lists... Done
-Building dependency tree       
+Building dependency tree
 Reading state information... Done
 The following additional packages will be installed:
   nginx-common
@@ -83,10 +83,10 @@ The following NEW packages will be installed:
 0 to upgrade, 2 to newly install, 0 to remove and 60 not to upgrade.
 Need to get 479 kB of archives.
 After this operation, 1,510 kB of additional disk space will be used.
-Do you want to continue? [Y/n] 
+Do you want to continue? [Y/n]
 Get:1 http://ppa.launchpad.net/galaxyproject/nginx/ubuntu xenial/main amd64 nginx-common all 1.10.0-0ubuntu0.16.04.4ppa1 [47.4 kB]
 Get:2 http://ppa.launchpad.net/galaxyproject/nginx/ubuntu xenial/main amd64 nginx-extras amd64 1.10.0-0ubuntu0.16.04.4ppa1 [662 kB]
-Fetched 479 kB in 0s (543 kB/s) 
+Fetched 479 kB in 0s (543 kB/s)
 Preconfiguring packages ...
 Selecting previously unselected package nginx-common.
 (Reading database ... 88615 files and directories currently installed.)
@@ -107,7 +107,7 @@ Processing triggers for ufw (0.35-0ubuntu2) ...
 $
 ```
 
-Visit `http://<your_ip>/` and you should see the Ubuntu nginx default page (or the Apache default page if you installed Apache before nginx).
+Visit `http://<your_ip>/` and you should see the Ubuntu nginx default page.
 
 **Part 2 - Basic configuration**
 
@@ -149,7 +149,7 @@ $ sudo rm sites-enabled/default
 $ sudo ln -s ../sites-available/galaxy sites-enabled/galaxy
 ```
 
-After these config changes, nginx must be restarted. Again, unlike Apache, nginx does not have its own command to control the nginx server. It can be restarted with systemd's `systemctl` command: `sudo systemctl restart nginx`. It can also be instructed to reread its configs with a `SIGHUP` (e.g. `sudo pkill -HUP nginx`) but beware: it will not reload if there is a config mistake (these refusals to reload can be discovered in `/var/log/nginx/error.log`).
+After these config changes, nginx must be restarted. Again, unlike Apache, nginx does not have its own command to control the nginx server. It can be restarted with systemd's `systemctl` command: `sudo systemctl restart nginx`. It can also be instructed to reread its configs with `sudo nginx -s reload` but beware: it will not reload if there is a config mistake (these refusals to reload can be discovered in `/var/log/nginx/error.log`). Config can be validated with `sudo nginx -t`.
 
 
 ```console
@@ -157,7 +157,7 @@ $ sudo systemctl restart nginx
 $
 ```
 
-Your Galaxy server should now be visible at `http://<your_ip>/` (if you recieve a page with the message "502 Bad Gateway", ensure that your Galaxy server is running.
+Your Galaxy server should now be visible at `http://<your_ip>/` (if you receive a page with the message "502 Bad Gateway", ensure that your Galaxy server is running.
 
 ## Section 2 - Performance improvements
 
@@ -223,7 +223,7 @@ To begin, modify `sites-available/galaxy` to include this additional block at th
     }
 ```
 
-In `/srv/galaxy/config/galaxy.ini`, uncomment `#nginx_x_accel_redirect_base = False` and change it to `nginx_x_accel_redirect_base = /_x_accel_redirect`. Remember, this file is owned by the **galaxy** user so be sure to use `sudo -u galaxy` when editing it
+In `/srv/galaxy/config/galaxy.ini`, uncomment `#nginx_x_accel_redirect_base = False` and change it to `nginx_x_accel_redirect_base = /_x_accel_redirect`. Remember, this file is owned by the **galaxy** user so be sure to use `sudo -u galaxy` when editing it.
 
 Finally, (re)start:
 - your Galaxy server (`CTRL+C` followed by `sudo -Hu galaxy galaxy` or `sudo -Hu galaxy galaxy --stop-daemon && sudo -Hu galaxy galaxy --daemon`)
@@ -316,7 +316,7 @@ Note that:
 
 ## Section 3 - Upload Galaxy datasets to nginx
 
-The performance of your Galaxy server can be further improved by configuring nginx to handle Galaxy dataset uploads directly. nginx intercepts the upload, writes it to disk, and then passes a the `POST` request on to Galaxy with the file contents replaced with the path to the file.
+The performance of your Galaxy server can be further improved by configuring nginx to handle Galaxy dataset uploads directly. nginx intercepts the upload, writes it to disk, and then passes a `POST` request on to Galaxy with the file contents replaced with the path to the file.
 
 To begin, modify `sites-available/galaxy` to include this additional block at the end, just inside the `server { ... }` block's closing brace:
 
@@ -376,7 +376,7 @@ If you see a line such as:
 aaa.bbb.ccc.ddd - - [27/Jan/2017:21:04:28 +0000] "POST /_upload HTTP/1.1" 200 508 "http://eee.fff.ggg.hhh/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36"
 ```
 
-It means that the upload module succesfully intercepted the upload. If the upload job completes successfully, then everything has worked correctly.
+It means that the upload module successfully intercepted the upload. If the upload job completes successfully, then everything has worked correctly.
 
 ## So, what did we learn?
 
