@@ -33,9 +33,9 @@ Extra features:
 - Serve byte range requests
 - Serve other sites from the same server
 - Can provide authentication
-  - Covered: Tuesday: Using and configuring external authentication services
+  - Will be covered on Tuesday: _Using and configuring external authentication services_
 
-Some of these features are available directly in uWSGI (covered Wednesday)
+Some of these features are available directly in uWSGI (covered Tuesday)
 
 ---
 # Apache
@@ -63,18 +63,18 @@ Debian/Ubuntu provide multiple nginx "flavors":
 - `nginx-full`: full set of core modules
 - `nginx-extras`: full set of core modules and extras (3rd party modules)
 
-There is also a "Galaxy" flavor<sup>[1]</sup> (includes [upload module](https://github.com/vkholodkov/nginx-upload-module)):
+There is also a "Galaxy" flavor<sup>[2]</sup> (includes [upload module](https://github.com/vkholodkov/nginx-upload-module)):
 - [RHEL](https://depot.galaxyproject.org/yum/) (derived from EPEL nginx)
 - [Ubuntu PPA](https://launchpad.net/~galaxyproject/+archive/ubuntu/nginx)
 
-.footnote[<sup>[2]</sup> Dynamic shared objects were [introduced in 1.9.11](https://www.nginx.com/blog/dynamic-modules-nginx-1-9-11/)
+.footnote[<sup>[1]</sup> Dynamic shared objects were [introduced in 1.9.11](https://www.nginx.com/blog/dynamic-modules-nginx-1-9-11/)
 
 <sup>[2]</sup> Still working on the automation to keep this up to date, though]
 
 ---
 # Exercise: nginx
 
-[nginx as a Reverse Proxy for Galaxy - Exercise](https://github.com/martenson/dagobah-training/blob/master/sessions/03-production-basics/ex3-nginx.md)
+[nginx as a Reverse Proxy for Galaxy - Exercise](https://github.com/gvlproject/dagobah-training/blob/master/sessions/03-production-basics/ex3-nginx.md)
 
 ---
 # Exercise: Apache
@@ -102,7 +102,7 @@ Why switch to uWSGI?
 - Greater scalability
 - Hundreds of other features (see [docs](http://uwsgi-docs.readthedocs.io/en/latest/))
 
-Covered: Tuesday: Improving the web serving experience with uWSGI
+Covered: Tuesday: _Improving the web serving experience with uWSGI_
 
 uWSGI will become the default: Watch [Galaxy Pull Request #2802](https://github.com/galaxyproject/galaxy/pull/2802), [Starforge Pull Request #118](https://github.com/galaxyproject/starforge/pull/118)
 

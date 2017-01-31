@@ -15,7 +15,7 @@ class: special
 # Upgrading Galaxy
 Tracking releases
 
-slides by @martenson
+slides by @martenson, @afgane
 
 .footnote[\#usegalaxy / @galaxyproject]
 
@@ -29,18 +29,19 @@ Answer your questions we will.
 ---
 # Release Cycle
 
-* Galaxy aims to release each 3 months.
-* Releases are tagged with year and month (15.10, 16.07).
+* Galaxy aims to release each 4 months
+  * Before 2017, this was each 3 months
+* Releases are tagged with year and month, for example 16.10, 17.01
 
 ---
 # Release
 
-* Every release has [release notes](https://docs.galaxyproject.org/en/master/releases).
-  * We put substantial effort in making them as useful as we can.
-  * Highlights, security announcements, deprecation notices, enhancements grouped by impact etc.
-* Every release has its own branch in GitHub repository.
-  * Named as `release_YY_MM`.
-  * Kept up to date (especially for recent releases).
+* Every release has [release notes](https://docs.galaxyproject.org/en/master/releases)
+  * We put substantial effort in making them as useful as we can
+  * Highlights, security announcements, deprecation notices, enhancements grouped by impact etc
+* Every release has its own branch in GitHub repository
+  * Named as `release_YY_MM`
+  * Kept up to date (especially for recent releases)
 
 ---
 # Keeping release up to date
@@ -49,10 +50,12 @@ To keep your `release_*` branch up to date you can:
 * `git pull --ff-only`
 * restart Galaxy
 
----
-# Upgrading release
+Works well if no local commits exist
 
-When new release is out:
+---
+# Upgrading to a new release
+
+When a new release is out:
 ```
 $ git checkout release_YY.MM && git pull --ff-only origin release_YY.MM
 ```
@@ -108,7 +111,7 @@ The former is probably better than the latter
 ---
 # Distribute Galaxy
 
-If you're using a compute cluster and not running from shared filesystem
+If you're using a compute cluster and not running from shared file system
 
     </textarea>
     <script src="../static/remark-latest.min.js">

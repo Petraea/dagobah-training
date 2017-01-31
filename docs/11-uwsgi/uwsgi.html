@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>uWSGI</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+  </head>
+  <body>
+    <textarea id="source">
+layout: true
+class: inverse, larger
+
+---
+class: special, middle
+# uWSGI
+
+slides by @natefoo, @Slugger70
+
+.footnote[\#usegalaxy / @galaxyproject]
+
+---
+# What is uWSGI?
+
+Web/application/WSGI server
+
+Replaces `Paste#http` (see `galaxy.ini`)
+
+---
+# Why uWSGI?
+
+- Work around the GIL without manually managing multiple Galaxy processes
+- Built in load balancing
+- Speak native high performance uWSGI protocol to nginx
+- Will be the default anyway
+- Uninterrupted restarting
+
+---
+# Other features
+
+Can do anything you can imagine: [uWSGI configuration options](http://uwsgi-docs.readthedocs.io/en/latest/Options.html)
+
+---
+# A note on processes
+
+uWSGI will run and control a configured number of *anonymous processes* to **serve web requests**
+
+These processes **do not** handle jobs. For this, we start *webless* processes called *job handlers*
+
+---
+# uWSGI communication
+
+- uWSGI can serve http directly using the `--http` option
+- uWSGI speaks a native protocol (which nginx also speaks) using `--socket`
+
+It's best to keep the proxy server, especially if you intend to host more than just a single Galaxy server on this system
+
+---
+# uWSGI configuration
+
+There are many potential ways to configure uWSGI, including:
+
+- With command line arguments
+- In a uWSGI-specific INI file
+- In a uWSGI-specific YAML file
+- As a "Paste Deploy" application in an application's ini file
+- Many more...
+
+---
+# uWSGI configuration
+
+We'll use the "Paste Deploy" configuration method since galaxy.ini is already in Paste Deploy format.
+
+Since we're using nginx, we'll also proxy using the `socket` option (native uWSGI protocol) rather than HTTP.
+
+Instructions for uWSGI-specific INI are in the Galaxy documentation
+
+---
+# How to use it
+
+- Install/configure uWSGI
+- Configure Galaxy job handlers
+- Run uWSGI
+- Run job handlers
+
+---
+# Exercise
+
+[Run Galaxy with uWSGI - Exercise](https://github.com/gvlproject/dagobah-training/blob/master/sessions/11-uwsgi/ex1-uwsgi.md)
+
+---
+# Run job handlers (separately)
+
+In supervisor session
+
+    </textarea>
+    <script src="../static/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>

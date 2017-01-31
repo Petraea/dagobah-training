@@ -19,12 +19,12 @@ generate-slides:
 	$(IN_VENV) python slideshow/build_slideshow.py 'Users, Groups, Quotas' sessions/08-users-groups-quotas/users-groups-quotas.md 08-users-groups-quotas
 	$(IN_VENV) python slideshow/build_slideshow.py 'Galaxy Tool Basics' sessions/09-tool-basics/tool-basics.md 09-tool-basics
 	$(IN_VENV) python slideshow/build_slideshow.py 'Upgrading & Releases' sessions/10-upgrading-release/upgrading.md 10-upgrading-release
+	$(IN_VENV) python slideshow/build_slideshow.py 'uWSGI' sessions/11-uwsgi/uwsgi.md 11-uwsgi
+	$(IN_VENV) python slideshow/build_slideshow.py 'Systemd and Supervisor' sessions/12-systemd-supervisor/systemd-supervisor.md 12-systemd-supervisor
 	$(IN_VENV) python slideshow/build_slideshow.py 'Basic Troubleshooting' sessions/11-basic-troubleshooting/basic-troubleshooting.md 11-basic-troubleshooting
 	$(IN_VENV) python slideshow/build_slideshow.py 'Galaxy Architecture' sessions/12-architecture/galaxy_architecture.md 12-architecture
-	$(IN_VENV) python slideshow/build_slideshow.py 'Ansible and Galaxy - Part 1' advanced/001-ansible/ansible-introduction.md 001-ansible
+	$(IN_VENV) python slideshow/build_slideshow.py 'Ansible and Galaxy - Part 1' sessions/13-ansible/ansible-introduction.md 001-ansible
 	$(IN_VENV) python slideshow/build_slideshow.py 'Monitoring and Maintenance' advanced/002-monitoring-maintenance/monitoring-maintenance.md 002-monitoring-maintenance
-	$(IN_VENV) python slideshow/build_slideshow.py 'uWSGI' advanced/002-monitoring-maintenance/uwsgi.md 002-monitoring-maintenance
-	$(IN_VENV) python slideshow/build_slideshow.py 'Systemd and Supervisor' advanced/002a-systemd-supervisor/systemd-supervisor.md 002a-systemd-supervisor
 	$(IN_VENV) python slideshow/build_slideshow.py 'Advanced Tool Wrapping' advanced/003-tools-advanced/tools-advanced.md 003-tools-advanced
 	$(IN_VENV) python slideshow/build_slideshow.py 'External Authentication' advanced/004-external-authentication/external-auth.md 004-external-auth
 	$(IN_VENV) python slideshow/build_slideshow.py 'Compute Cluster' advanced/005-compute-cluster/compute-cluster.md 005-compute-cluster
