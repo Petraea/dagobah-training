@@ -53,8 +53,8 @@ Built slides have [an index](https://gvlproject.github.io/dagobah-training/).
 | 11:00 | **Morning break** | | |
 | 11:15 | Upgrading to a new Galaxy release | [Slides](https://gvlproject.github.io/dagobah-training/10-upgrading-release/upgrading.html) | (E) + (R)? |
 | 12:30 | **Lunch** | | |
-| 13:15 | Improving the web serving experience with uWSGI | [Slides](https://gvlproject.github.io/dagobah-training/11-uwsgi/uwsgi.html) | (N) |
-| 14:15 | Controlling Galaxy with systemd and supervisor | [Slides](https://gvlproject.github.io/dagobah-training/12-systemd-supervisor/systemd-supervisor.html), [Exercise](sessions/002a-systemd-supervisor/ex1-supervisor.md) | (N) |
+| 13:15 | Improving the web serving experience with uWSGI | [Slides](https://gvlproject.github.io/dagobah-training/11-uwsgi/uwsgi.html) [Exercise](sessions/11-uwsgi/ex1-uwsgi.md) | (N) |
+| 14:15 | Controlling Galaxy with systemd and supervisor | [Slides](https://gvlproject.github.io/dagobah-training/12-systemd-supervisor/systemd-supervisor.html), [Exercise](sessions/12-systemd-supervisor/ex1-supervisor.md) | (N) |
 | 15:15 | **Afternoon break** | | |
 | 15:30 | Server monitoring and maintenance: Admin UI, Log files, Direct database queries, command line & scripts, what to backup and how | [Slides](https://gvlproject.github.io/dagobah-training/002-monitoring-maintenance/monitoring-maintenance.html) | (S) + (N) |
 | 16:30 | Using and configuring external authentication services | [Slides](https://gvlproject.github.io/dagobah-training/004-external-auth/external-auth.html), [Exercise](sessions/004-external-authentication/ex1-pam-auth.md) | (N) |
