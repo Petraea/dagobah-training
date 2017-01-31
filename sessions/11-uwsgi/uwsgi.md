@@ -66,6 +66,24 @@ Since we're using nginx, we'll also proxy using the `socket` option (native uWSG
 Instructions for uWSGI-specific INI are in the Galaxy documentation
 
 ---
+# Direct HTTP
+
+You can serve HTTP directly without a proxy using a config like:
+
+```ini
+[uwsgi]
+processes = 2
+threads = 2
+http = 127.0.0.1:8080       # serve http directly
+pythonpath = lib
+master = True
+logto = /srv/galaxy/log/uwsgi.log
+# static maps if serving http directly
+static-map = /static/style=/srv/galaxy/server/static/style/blue
+static-map = /static=/srv/galaxy/server/galaxy/static
+```
+
+---
 # How to use it
 
 - Install/configure uWSGI

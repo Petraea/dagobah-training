@@ -1,10 +1,10 @@
-![GATC Logo](../../docs/shared-images/AdminTraining2016-100.png) ![galaxy logo](../../docs/shared-images/galaxy_logo_25percent_transparent.png)
+![GATC Logo](../../docs/shared-images/gatc2017_logo_150.png) ![galaxy logo](../../docs/shared-images/galaxy_logo_25percent_transparent.png)
 
-### GATC - 2016 - Salt Lake City
+### GATC - 2017 - Melbourne
 
 # Managing Multiprocess Galaxy with Supervisor - Exercise.
 
-#### Authors: Nate Coraor. 2016
+#### Authors: Nate Coraor. 2017
 
 ## Introduction
 
@@ -12,31 +12,65 @@ A multiprocess Galaxy server is essential for scalability. However, it can also 
 
 ## Section 1 - Installation and basic configuration
 
-You have already done this using Ansible during that session. Ansible did the following:
+Install supervisor from the system pacakge manager using:
 
-1. Install the `supervisor` package from apt
-2. Create a config to start Galaxy using uWSGI, located at `/etc/supervisor/conf.d/galaxy.conf`
-
-Moving right along...
-
-## Section 2 - Add handlers and a group
-
-We have defined two handlers in `/srv/galaxy/server/config/job_conf.xml` (also installed in the Ansible session):
-
-```xml
-    <handlers default="handlers">
-        <handler id="handler0" tags="handlers"/>
-        <handler id="handler1" tags="handlers"/>
-    </handlers>
+```console
+$ sudo apt install supervisor
 ```
+
+Supervisor isn't running, but we can start it with:
+
+```console
+$ sudo systemctl start supervisor
+```
+
+If `supervisorctl status` returns no output, it means it's working (but nothing has been configured yet):
+
+```console
+$ sudo supervisorctl status
+$
+```
+
+## Section 2 - Add uWSGI process
+
+If you are still running uWSGI, use `CTRL+C` to stop it.
+
+We need to add a `[program:x]` section to the supervsior config manage uWSGI. The default supervisor config file is at `/etc/supervisor/supervisord.conf`. This file includes any files matching `/etc/supervisor/conf.d/*.conf`. We'll create a `galaxy.conf`:
+
+```console
+$ sudo -e /etc/supervisor/conf.d/galaxy.conf
+```
+
+Add the following new section:
+
+```ini
+[program:galaxy]
+command         = uwsgi --plugin python --virtualenv /srv/galaxy/venv --ini-paste /srv/galaxy/config/galaxy.ini
+directory       = /srv/galaxy/server
+autostart       = true
+autorestart     = true
+startsecs       = 10
+user            = galaxy
+stopsignal      = INT
+```
+
+The command that we used to start uWSGI in the uWSGI exercise was:
+
+```console
+$ sudo -Hu galaxy sh -c 'cd /srv/galaxy/server && uwsgi --plugin python --virtualenv /srv/galaxy/venv --ini-paste /srv/galaxy/config/galaxy.ini'
+```
+
+As you can see, supervisor is running the same command, and runs it as the same user, from the same working directory.
+
+## Section 3 - Add handler processes and group
 
 **Part 1 - Define a handler**
 
-We need to add a `[program:x]` section to manage these handlers. Because we have cleverly named our handlers as a string followed by an incrementing integer (beginning with 0) we only need one `[program:x]` and we use the `numprocs` feature to spawn multiple. This is added to the bottom of `/etc/supervisor/conf.d/galaxy.conf`:
+We need to add a `[program:x]` section to manage the job handlers we added. Because we have cleverly named our handlers as a string followed by an incrementing integer (beginning with 0) we only need one `[program:x]` and we use the `numprocs` feature to spawn multiple. This is added to the bottom of `/etc/supervisor/conf.d/galaxy.conf`:
 
 ```ini
 [program:handler]
-command         = python ./scripts/galaxy-main -c /srv/galaxy/server/galaxy.ini --server-name=handler%(process_num)s
+command         = python ./scripts/galaxy-main -c /srv/galaxy/config/galaxy.ini --server-name=handler%(process_num)s
 directory       = /srv/galaxy/server
 process_name    = handler%(process_num)s
 numprocs        = 2
@@ -45,10 +79,12 @@ autostart       = true
 autorestart     = true
 startsecs       = 10
 user            = galaxy
-environment     = VIRTUAL_ENV="/srv/galaxy/server/.venv",PATH="/srv/galaxy/server/.venv/bin:%(ENV_PATH)s"
+environment     = VIRTUAL_ENV="/srv/galaxy/venv",PATH="/srv/galaxy/venv/bin:%(ENV_PATH)s"
 stdout_logfile  = /srv/galaxy/server/handler%(process_num)s.log
 redirect_stderr = true
 ```
+
+Now, save and quit your editor.
 
 The magic is in these two lines, which cause supervisor to create two instances of the program and set their program names accordingly:
 
@@ -61,6 +97,7 @@ Notify supervisor of the changes with `supervisorctl update`:
 
 ```console
 $ sudo supervisorctl update
+galaxy: added process group
 handler: added process group
 $ sudo supervisorctl status
 galaxy                           RUNNING   pid 6710, uptime 15:37:57
@@ -103,7 +140,8 @@ $ sudo supervisorctl signal HUP gx:galaxy && sudo supervisorctl restart gx:handl
 ## Having trouble?
 
 - Logs in `/var/log/supervisor`
-- Program stdout accessible directly at `supervisorctl tail <program>`
+- Program stdout accessible directly at `supervisorctl tail <program>` (these can also be found in `/var/log/supervisor`)
+- TIP: You may find it easier to work with the log files in `/srv/galaxy/log`. To do this, add `--log-file /srv/galaxy/log/handler%(process_num)s` to the `[program:handler]`'s `command`, and update supervisor with `sudo supervisorctl update`
 
 ## Further reading
 

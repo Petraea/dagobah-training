@@ -20,7 +20,7 @@ You can install uWSGI in one of two ways:
 We'll use the system package manager method, but either method is fine.
 
 ```console
-$ sudo apt install uwsgi uwsgi-python-plugin
+$ sudo apt install uwsgi uwsgi-plugin-python
 ```
 
 <sup>1. It is worth noting that Debian splits uWSGI plugins into an array of individual packages. When installing from `pip`, the entire application with all its standard plugins is built and installed.</sup>
@@ -45,21 +45,14 @@ master = True
 logto = /srv/galaxy/log/uwsgi.log
 ```
 
-WHEN I HAVE INTERNETS CHECK IF THESE ARE DOCUMENTED:
-
-```ini
-http = 127.0.0.1:8080       # serve http directly
-# static maps if serving http directly
-static-map = /static/style=/srv/galaxy/server/static/style/blue
-static-map = /static=/srv/galaxy/server/galaxy/static
-```
+Then, save and quit your editor.
 
 ## Section 3 - Define job handlers
 
 So far, Galaxy has used a default job configuration. We need to modify this to prevent uWSGI-managed Galaxy server processes from attempting to run jobs. Begin by making a copy of the sample configuration, then editing it:
 
 ```console
-$ sudo -u galaxy cp /srv/galaxy/server/config/job_conf.xml.sample_basic /srv/galaxy/config/job_conf.xml`
+$ sudo -u galaxy cp /srv/galaxy/server/config/job_conf.xml.sample_basic /srv/galaxy/config/job_conf.xml
 $ sudo -e /srv/galaxy/config/job_conf.xml
 ```
 
@@ -121,7 +114,7 @@ $ sudo systemctl restart nginx
 If you are still running Galaxy, stop it with `CTRL+C` followed by `sudo -Hu galaxy galaxy` or `sudo -Hu galaxy galaxy --stop-daemon && sudo -Hu galaxy galaxy --daemon`. Then, start it up under uWSGI with:
 
 ```console
-$ sudo -Hu galaxy 'cd /srv/galaxy/server && uwsgi --plugin python --virtualenv /srv/galaxy/venv --ini-paste /srv/galaxy/config/galaxy.ini'
+$ sudo -Hu galaxy sh -c 'cd /srv/galaxy/server && uwsgi --plugin python --virtualenv /srv/galaxy/venv --ini-paste /srv/galaxy/config/galaxy.ini'
 ```
 
 Galaxy should now be available at `http://<your_ip>/`
@@ -131,3 +124,4 @@ Starting uWSGI this way is a bit tedious. In addition, your job handlers aren't 
 ## Further reading
 
 - [uWSGI docs](http://uwsgi-docs.readthedocs.org/)
+- [Galaxy uWSGI docs](https://wiki.galaxyproject.org/Admin/Config/Performance/Scaling#uWSGI)
