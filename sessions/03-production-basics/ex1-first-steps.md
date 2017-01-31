@@ -124,10 +124,11 @@ $ sudo -u galaxy cp /srv/galaxy/server/config/galaxy.ini.sample /srv/galaxy/conf
 $ sudo -u galaxy -e /srv/galaxy/config/galaxy.ini
 ```
 
-Initially, we'll just set `file_path`. Be sure to remove the leading `#` comment character:
+Initially, we'll just set `file_path` and `admin_users`. Be sure to remove the leading `#` comment character:
 
 ```ini
 file_path = /srv/galaxy/data
+admin_users = your@ema.il
 ```
 
 Then save and quit your editor.
