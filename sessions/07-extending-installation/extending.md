@@ -127,10 +127,9 @@ In `galaxy.ini`:
 ---
 
 class: normal
-# Exercise: Configuring FTP
+# Exercise
 
-* [ProFTPD Documentation](https://wiki.galaxyproject.org/Admin/Config/UploadviaFTP)
-* Stay tuned for advanced class
+* [Exercise - Configuring FTP](https://github.com/gvlproject/dagobah-training/blob/master/sessions/07-extending-installation/ex1-proftpd.md)
 
 ---
 
