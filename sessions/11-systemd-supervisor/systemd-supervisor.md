@@ -82,7 +82,7 @@ stopsignal      = INT
 
 Let's add some job handlers
 
-[Managing Multiprocess Galaxy with Supervisor - Exercise](https://github.com/martenson/dagobah-training/blob/master/advanced/002a-systemd-supervisor/ex1-supervisor.md)
+[Managing Multiprocess Galaxy with Supervisor - Exercise](https://github.com/gvlproject/dagobah-training/blob/master/sessions/11-systemd-supervisor/ex1-supervisor.md)
 
 ---
 class: special

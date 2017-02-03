@@ -33,13 +33,13 @@ Built slides have [an index](https://gvlproject.github.io/dagobah-training/).
 | 09:30 | Deployment and platform options | [Slides](https://gvlproject.github.io/dagobah-training/01-deployment-platforms/choices.html) | (N) |
 | 10:00 | Get a basic Galaxy server up and running | [Slides](https://gvlproject.github.io/dagobah-training/02-basic-server/get-galaxy.html) | (N) + (E)?) |
 | 10:45 | **Morning break** | | |
-| 11:00 | Galaxy server optional necessities: PostgreSQL and NGINX | [First Steps Slides](https://gvlproject.github.io/dagobah-training/03-production-basics/production.html), [First Steps Exercise](essions/03-production-basics/ex1-first-steps.md), [PostgreSQL Slides](https://gvlproject.github.io/dagobah-training/03-production-basics/databases.html), [PostgreSQL Exercise](sessions/03-production-basics/ex2-postgres.md)  [NGINX/Apache Slides](https://gvlproject.github.io/dagobah-training/03-production-basics/webservers.html), [NGINX Exercise](sessions/03-production-basics/ex3-nginx.md), [Apache Exercise](sessions/03-production-basics/ex4-apache.md) (for reference)| (N) + (E) |
+| 11:00 | Galaxy server optional necessities: PostgreSQL and nginx | [First Steps Slides](https://gvlproject.github.io/dagobah-training/03-production-basics/production.html), [First Steps Exercise](sessions/03-production-basics/ex1-first-steps.md), [PostgreSQL Slides](https://gvlproject.github.io/dagobah-training/03-production-basics/databases.html), [PostgreSQL Exercise](sessions/03-production-basics/ex2-postgres.md),  [nginx/Apache Slides](https://gvlproject.github.io/dagobah-training/03-production-basics/webservers.html), [nginx Exercise](sessions/03-production-basics/ex3-nginx.md), [Apache Exercise](sessions/03-production-basics/ex4-apache.md) (for reference)| (N) + (E) |
 | 12:15 | **Lunch** | | |
 | 13:00 | Galaxy server optional necessities (continued)| | |
-| 13:45 | Introduction to the Galaxy Tool Shed: Identifying and installing well-defined tools | [Slides (Shed)](https://gvlproject.github.io/dagobah-training/05-tool-shed/shed_intro.html), [Slides (Tools)](https://gvlproject.github.io/dagobah-training/05-tool-shed/tool_installation.html), [Slides (Dependencies)](https://gvlproject.github.io/dagobah-training/05-tool-shed/tool-dependencies.html), [Exercise](sessions/05-tool-shed/ex-tool-management.md)| (B) |
+| 13:45 | Introduction to the Galaxy Tool Shed: Identifying and installing well-defined tools | [Slides (Shed)](https://gvlproject.github.io/dagobah-training/04-tool-shed/shed_intro.html), [Slides (Tools)](https://gvlproject.github.io/dagobah-training/04-tool-shed/tool_installation.html), [Slides (Dependencies)](https://gvlproject.github.io/dagobah-training/04-tool-shed/tool-dependencies.html), [Exercise](sessions/04-tool-shed/ex-tool-management.md)| (B) |
 | 15:00 | **Afternoon break** | | |
-| 15:15 | Defining and importing genomes, Data Managers | [Slides](https://gvlproject.github.io/dagobah-training/06-reference-genomes/reference_genomes.html), [Exercise](sessions/06-reference-genomes/ex06_reference_genomes.md) | (S) |
-| 16:50 | Extending your installation: FTP, SMTP, and more | [Slides](https://gvlproject.github.io/dagobah-training/07-extending-installation/extending.html) | (N) |
+| 15:15 | Defining and importing genomes, Data Managers | [Slides](https://gvlproject.github.io/dagobah-training/05-reference-genomes/reference_genomes.html), [Exercise](sessions/05-reference-genomes/ex1-reference-genomes.md) | (S) |
+| 16:50 | Extending your installation: FTP, SMTP, and more | [Slides](https://gvlproject.github.io/dagobah-training/06-extending-installation/extending.html), [Exercise](sessions/06-extending-installation/ex1-proftpd.md) | (N) |
 | 18:00 | Close Day 1 | | All |
 
 #### Tuesday
@@ -48,16 +48,16 @@ Built slides have [an index](https://gvlproject.github.io/dagobah-training/).
 | **Time** | **Topic** | **Links** | **Instructor** |
 | -------- | --------- | --------- | ----------- |
 | 09:00 | Welcome and questions |  | All |
-| 09:15 | Users, Groups, and Quotas | [Slides](https://gvlproject.github.io/dagobah-training/08-users-groups-quotas/users-groups-quotas.html) | (S) |
-| 10:30 | Updating tools and supporting multiple versions of tools | [Exercise](sessions/05-tool-shed/ex-tool-management.md) | (B) |
+| 09:15 | Users, Groups, and Quotas | [Slides](https://gvlproject.github.io/dagobah-training/07-users-groups-quotas/users-groups-quotas.html) | (S) |
+| 10:30 | Updating tools and supporting multiple versions of tools | [Exercise](sessions/04-tool-shed/ex-tool-management.md) | (B) |
 | 11:00 | **Morning break** | | |
-| 11:15 | Upgrading to a new Galaxy release | [Slides](https://gvlproject.github.io/dagobah-training/10-upgrading-release/upgrading.html) | (E) + (R)? |
+| 11:15 | Upgrading to a new Galaxy release | [Slides](https://gvlproject.github.io/dagobah-training/09-upgrading-release/upgrading.html) | (E) + (R)? |
 | 12:30 | **Lunch** | | |
-| 13:15 | Improving the web serving experience with uWSGI | [Slides](https://gvlproject.github.io/dagobah-training/11-uwsgi/uwsgi.html) [Exercise](sessions/11-uwsgi/ex1-uwsgi.md) | (N) |
-| 14:15 | Controlling Galaxy with systemd and supervisor | [Slides](https://gvlproject.github.io/dagobah-training/12-systemd-supervisor/systemd-supervisor.html), [Exercise](sessions/12-systemd-supervisor/ex1-supervisor.md) | (N) |
+| 13:15 | Improving the web serving experience with uWSGI | [Slides](https://gvlproject.github.io/dagobah-training/10-uwsgi/uwsgi.html) [Exercise](sessions/10-uwsgi/ex1-uwsgi.md) | (N) |
+| 14:15 | Controlling Galaxy with systemd and supervisor | [Slides](https://gvlproject.github.io/dagobah-training/11-systemd-supervisor/systemd-supervisor.html), [Exercise](sessions/11-systemd-supervisor/ex1-supervisor.md) | (N) |
 | 15:15 | **Afternoon break** | | |
-| 15:30 | Server monitoring and maintenance: Admin UI, Log files, Direct database queries, command line & scripts, what to backup and how | [Slides](https://gvlproject.github.io/dagobah-training/002-monitoring-maintenance/monitoring-maintenance.html) | (S) + (N) |
-| 16:30 | Using and configuring external authentication services | [Slides](https://gvlproject.github.io/dagobah-training/004-external-auth/external-auth.html), [Exercise](sessions/004-external-authentication/ex1-pam-auth.md) | (N) |
+| 15:30 | Server monitoring and maintenance: Admin UI, Log files, Direct database queries, command line & scripts, what to backup and how | [Slides](https://gvlproject.github.io/dagobah-training/12-monitoring-maintenance/monitoring-maintenance.html) | (S) + (N) |
+| 16:30 | Using and configuring external authentication services | [Slides](https://gvlproject.github.io/dagobah-training/13-external-auth/external-auth.html), [Exercise](sessions/13-external-auth/ex1-pam-auth.md) | (N) |
 | 17:45 | Questions and ad-hoc troubleshooting | | All |
 | 18:00 | Close Day 2 | | All |
 
@@ -67,8 +67,8 @@ Built slides have [an index](https://gvlproject.github.io/dagobah-training/).
 | **Time** | **Topic** | **Links** | **Instructor** |
 | -------- | --------- | --------- | ----------- |
 | 09:00 | Welcome and questions |  | All |
-| 09:15 | Configuration management choices: Introduction to Ansible | [Slides](https://gvlproject.github.io/dagobah-training/001-ansible/ansible-introduction.html), [Exercise](sessions/001-ansible/ex1-intro-ansible.md) | (S) |
-| 10:00 | Using Ansible to deploy Galaxy I |  [Exercise](sessions/001-ansible/ex2-galaxy-ansible.md)| (S) |
+| 09:15 | Configuration management choices: Introduction to Ansible | [Slides](https://gvlproject.github.io/dagobah-training/14-ansible/ansible-introduction.html), [Exercise](sessions/14-ansible/ex1-intro-ansible.md) | (S) |
+| 10:00 | Using Ansible to deploy Galaxy I |  [Exercise](sessions/14-ansible/ex2-galaxy-ansible.md)| (S) |
 | 10:30 | **Morning break** | | |
 | 10:45 | Using Ansible to deploy Galaxy II |  | (S) + (N) |
 | 12:20 | **Lunch** | | |

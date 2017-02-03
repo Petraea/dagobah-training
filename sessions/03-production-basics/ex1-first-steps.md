@@ -117,18 +117,47 @@ Then, save and quit the editor. This file should be executable, make it so with 
 $ sudo -u galaxy chmod +x /srv/galaxy/bin/galaxy
 ```
 
-Next, we'll create a Galaxy config file, starting from the sample:
+Next, we'll create some Galaxy config files, starting from the samples:
 
 ```console
-$ sudo -u galaxy cp /srv/galaxy/server/config/galaxy.ini.sample /srv/galaxy/config/galaxy.ini
+$ for f in galaxy.ini tool_conf.xml shed_tool_conf.xml tool_data_table_conf.xml \
+           shed_tool_data_table_conf.xml data_manager_conf.xml shed_data_manager_conf.xml; do
+    sudo -u galaxy cp /srv/galaxy/server/config/${f}.sample /srv/galaxy/config/${f}
+done
+```
+
+Next, edit Galaxy's primary configuration file, `galaxy.ini`:
+
+```console
 $ sudo -u galaxy -e /srv/galaxy/config/galaxy.ini
 ```
 
-Initially, we'll just set `file_path` and `admin_users`. Be sure to remove the leading `#` comment character:
+Let's set a few config variables that will be useful for this and upcoming sessions:
 
 ```ini
 file_path = /srv/galaxy/data
+tool_config_file = /srv/galaxy/config/tool_conf.xml,/srv/galaxy/config/shed_tool_conf.xml
+tool_dependency_dir = /srv/galaxy/dependencies
+tool_data_table_config = /srv/galaxy/config/tool_data_table_conf.xml
+shed_tool_data_table_config = /srv/galaxy/config/shed_tool_data_table_conf.xml
 admin_users = your@ema.il
+data_manager_config_file = /srv/galaxy/config/data_manager_conf.xml
+shed_data_manager_config_file = /srv/galaxy/config/shed_data_manager_conf.xml
+galaxy_data_manager_data_path = /srv/galaxy/tool-data
+```
+
+Then save and quit your editor.
+
+Next, we need to define where tools that we install from the Galaxy Tool Shed will be installed. We do this in `shed_tool_conf.xml`, the file which controls which Tool Shed-installed tools are loaded into Galaxy at startup time:
+
+```console
+$ sudo -u galaxy -e /srv/galaxy/config/shed_tool_conf.xml
+```
+
+Change the `tool_path` attribute of the `<toolbox>` path to an absolute path, e.g.:
+
+```xml
+<toolbox tool_path="/srv/galaxy/shed_tools">
 ```
 
 Then save and quit your editor.

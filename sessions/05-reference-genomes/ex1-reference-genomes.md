@@ -118,18 +118,17 @@ Skip this part if you are already an admin user of your Galaxy server!
 * Login to your Galaxy server
 * Check if your username is an admin user:
 ``` bash
-  cd galaxy/config
+  cd /srv/galaxy/config
   grep admin_users galaxy.ini
 ```
 * It should return `admin_users = ` followed by a comma delimited list of user emails. If yours is not there, it needs to be added. Use only commas to delimit different admin users - no spaces!
 * If you make any changes to the galaxy.ini file, you need to restart Galaxy before they will take effect.
 * For Galaxy running in daemon mode:
 ``` bash
-  cd galaxy
-  sh run.sh --stop-daemon
-  sh run.sh --daemon
+  sudo -Hu galaxy galaxy --stop-daemon
+  sudo -Hu galaxy galaxy --daemon
 ```
-* Watch the Galaxy log file with `tail -f paster.log`.
+* Watch the Galaxy log file with `tail -f /srv/galaxy/log/paster.log`.
 * Test you are an Admin user by logging into your Galaxy server as the username you added to galaxy.ini
 * You should see an "Admin" menu item at the top of the Galaxy interface.
 
@@ -166,7 +165,7 @@ http://www.bx.psu.edu/~dan/examples/gcc2014/data_manager_workshop/fastq/SRR50777
 We will be adding a new built-in reference dataset, the sacCer1 genome build (good old Saccharomyces cerevisiae - beer yeast). We will download the fasta sequence file for it, index it for bwa and edit all of the appropriate Galaxy .loc file.
 
 * Get the reference genome in the FASTA format.
-  * From your Galaxy root:
+  * From your Galaxy root, as the Galaxy user (e.g. `sudo -Hsu galaxy`):
   ``` bash
   cd tool-data/
   mkdir -p sacCer1/seq
@@ -185,7 +184,7 @@ We will be adding a new built-in reference dataset, the sacCer1 genome build (go
 
   ```console
 
-  $ source ~/galaxy/database/dependencies/bwa/0.7.12/iuc/package_bwa_0_7_12/6af9b24ddeee
+  $ source /srv/galaxy/dependencies/bwa/0.7.12/iuc/package_bwa_0_7_12/6af9b24ddeee
   $ bwa
 
   Program: bwa (alignment via Burrows-Wheeler transformation)
@@ -243,8 +242,7 @@ We will be adding a new built-in reference dataset, the sacCer1 genome build (go
   ```
 * Now, all that's left to do is add the `bwa_mem_index` data table to the tool data table config file. Make a copy from the sample and add the new table to the bottom:
   ```console
-  cd ~/galaxy/config
-  cp tool_data_table_conf.xml.sample tool_data_table_conf.xml
+  cd /srv/galaxy/config
   vi tool_data_table_conf.xml
   ```
   ```xml
@@ -301,11 +299,12 @@ We need to tell Galaxy where to find the Data Managers and their configuration.
 In your *galaxy.ini* file the following settings exist in the [app:main] section:
 
 ```
+shed_tool_data_table_config = /srv/galaxy/config/shed_tool_data_table_conf.xml
 # Data manager configuration options
 enable_data_manager_user_view = True
-data_manager_config_file = data_manager_conf.xml
-shed_data_manager_config_file = shed_data_manager_conf.xml
-galaxy_data_manager_data_path = tool-data
+data_manager_config_file = /srv/galaxy/config/data_manager_conf.xml
+shed_data_manager_config_file = /srv/galaxy/config/shed_data_manager_conf.xml
+galaxy_data_manager_data_path = /srv/galaxy/tool-data
 ```
 
 Where:
@@ -330,7 +329,7 @@ Make sure you are logged in as an Admin user on your Galaxy server. Then, from t
   * Install the fetch genome all fasta data manager.
 
 
-* View in the file system where the various elements land. Have a look in the configuration files located in config directory under Galaxy root.
+* View in the file system where the various elements land. Have a look in the configuration files located in config directory.
 
 *shed_data_manager_conf.xml*
 
@@ -409,6 +408,9 @@ You should see that sacCer2 has been added to all_fasta.
 
 In this part we will repeat the process from part 1 except that we will install the bwa data manager this time.
 
+* Install the newer version of the BWA tool from the toolshed. This will install bwa from Conda.
+  * From the Admin page, click **Search Toolsheds** and then search for bwa.
+  * Install the *bwa* by the devteam.
 * Install the bwa data manager from the toolshed.
   * From the Admin page, click **Search Toolsheds** and then search for bwa.
   * Install the *data_manager_bwa_mem_index_builder* by the devteam. (This is the newer version of the BWA index builder.)

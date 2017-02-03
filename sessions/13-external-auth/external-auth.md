@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>External Authentication</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
-  </head>
-  <body>
-    <textarea id="source">
 layout: true
 class: inverse, middle, large
 
@@ -157,13 +148,4 @@ Available [provider modules](https://github.com/galaxyproject/galaxy/tree/dev/li
 ---
 # Galaxy PAM Exercise
 
-[PAM Authentication in Galaxy - Exercise](https://github.com/martenson/dagobah-training/blob/master/advanced/004-external-authentication/ex1-pam-auth.md)
-
-    </textarea>
-    <script src="../static/remark-latest.min.js">
-    </script>
-    <script>
-      var slideshow = remark.create();
-    </script>
-  </body>
-</html>
+[PAM Authentication in Galaxy - Exercise](https://github.com/gvlproject/dagobah-training/blob/master/sessions/13-external-auth/ex1-pam-auth.md)

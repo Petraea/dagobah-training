@@ -19,7 +19,9 @@ Hint: You can use search in https://toolshed.g2.bx.psu.edu/ or http://toolshed.t
 ## Task 2
 * Install [`devteam/freebayes`](https://toolshed.g2.bx.psu.edu/view/devteam/freebayes/) from MTS in revision `22:99684adf84de` into new section 'Freebayes' using TS dependencies.
 
-Hint: Note the revision, it is NOT the latest.
+Hints:
+- Note the revision, it is NOT the latest.
+- If you did not set `tool_config_file` and `tool_dependency_dir` in the production basics session, you'll need to do it now.
 
 ---
 ## Task 3

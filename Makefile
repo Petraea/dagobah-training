@@ -11,22 +11,19 @@ generate-slides:
 	$(IN_VENV) python slideshow/build_slideshow.py 'Production Basics' sessions/03-production-basics/production.md 03-production-basics
 	$(IN_VENV) python slideshow/build_slideshow.py 'Galactic Database' sessions/03-production-basics/databases.md 03-production-basics
 	$(IN_VENV) python slideshow/build_slideshow.py 'Web Servers' sessions/03-production-basics/webservers.md 03-production-basics
-	$(IN_VENV) python slideshow/build_slideshow.py 'Tool Shed' sessions/05-tool-shed/shed_intro.md 05-tool-shed
-	$(IN_VENV) python slideshow/build_slideshow.py 'Tool Dependencies' sessions/05-tool-shed/tool-dependencies.md 05-tool-shed
-	$(IN_VENV) python slideshow/build_slideshow.py 'Tool Installation' sessions/05-tool-shed/tool_installation.md 05-tool-shed
-	$(IN_VENV) python slideshow/build_slideshow.py 'Reference Genomes' sessions/06-reference-genomes/reference_genomes.md 06-reference-genomes
-	$(IN_VENV) python slideshow/build_slideshow.py 'Extending Installation' sessions/07-extending-installation/extending.md 07-extending-installation
-	$(IN_VENV) python slideshow/build_slideshow.py 'Users, Groups, Quotas' sessions/08-users-groups-quotas/users-groups-quotas.md 08-users-groups-quotas
-	$(IN_VENV) python slideshow/build_slideshow.py 'Galaxy Tool Basics' sessions/09-tool-basics/tool-basics.md 09-tool-basics
-	$(IN_VENV) python slideshow/build_slideshow.py 'Upgrading & Releases' sessions/10-upgrading-release/upgrading.md 10-upgrading-release
-	$(IN_VENV) python slideshow/build_slideshow.py 'uWSGI' sessions/11-uwsgi/uwsgi.md 11-uwsgi
-	$(IN_VENV) python slideshow/build_slideshow.py 'Systemd and Supervisor' sessions/12-systemd-supervisor/systemd-supervisor.md 12-systemd-supervisor
-	$(IN_VENV) python slideshow/build_slideshow.py 'Basic Troubleshooting' sessions/11-basic-troubleshooting/basic-troubleshooting.md 11-basic-troubleshooting
-	$(IN_VENV) python slideshow/build_slideshow.py 'Galaxy Architecture' sessions/12-architecture/galaxy_architecture.md 12-architecture
-	$(IN_VENV) python slideshow/build_slideshow.py 'Ansible and Galaxy - Part 1' sessions/13-ansible/ansible-introduction.md 001-ansible
-	$(IN_VENV) python slideshow/build_slideshow.py 'Monitoring and Maintenance' advanced/002-monitoring-maintenance/monitoring-maintenance.md 002-monitoring-maintenance
-	$(IN_VENV) python slideshow/build_slideshow.py 'Advanced Tool Wrapping' advanced/003-tools-advanced/tools-advanced.md 003-tools-advanced
-	$(IN_VENV) python slideshow/build_slideshow.py 'External Authentication' advanced/004-external-authentication/external-auth.md 004-external-auth
+	$(IN_VENV) python slideshow/build_slideshow.py 'Tool Shed' sessions/04-tool-shed/shed_intro.md 04-tool-shed
+	$(IN_VENV) python slideshow/build_slideshow.py 'Tool Dependencies' sessions/04-tool-shed/tool-dependencies.md 04-tool-shed
+	$(IN_VENV) python slideshow/build_slideshow.py 'Tool Installation' sessions/04-tool-shed/tool_installation.md 04-tool-shed
+	$(IN_VENV) python slideshow/build_slideshow.py 'Reference Genomes' sessions/05-reference-genomes/reference_genomes.md 05-reference-genomes
+	$(IN_VENV) python slideshow/build_slideshow.py 'Extending Installation' sessions/06-extending-installation/extending.md 06-extending-installation
+	$(IN_VENV) python slideshow/build_slideshow.py 'Users, Groups, Quotas' sessions/07-users-groups-quotas/users-groups-quotas.md 07-users-groups-quotas
+	$(IN_VENV) python slideshow/build_slideshow.py 'Upgrading & Releases' sessions/09-upgrading-release/upgrading.md 09-upgrading-release
+	$(IN_VENV) python slideshow/build_slideshow.py 'uWSGI' sessions/10-uwsgi/uwsgi.md 10-uwsgi
+	$(IN_VENV) python slideshow/build_slideshow.py 'Systemd and Supervisor' sessions/11-systemd-supervisor/systemd-supervisor.md 11-systemd-supervisor
+	$(IN_VENV) python slideshow/build_slideshow.py 'Monitoring and Maintenance' sessions/12-monitoring-maintenance/monitoring-maintenance.md 12-monitoring-maintenance
+	$(IN_VENV) python slideshow/build_slideshow.py 'External Authentication' sessions/13-external-auth/external-auth.md 13-external-auth
+	$(IN_VENV) python slideshow/build_slideshow.py 'Ansible and Galaxy - Part 1' sessions/14-ansible/ansible-introduction.md 14-ansible
+	#
 	$(IN_VENV) python slideshow/build_slideshow.py 'Compute Cluster' advanced/005-compute-cluster/compute-cluster.md 005-compute-cluster
 	cp advanced/005-compute-cluster/slurm-wlm-configurator.html docs/005-compute-cluster
 	$(IN_VENV) python slideshow/build_slideshow.py 'Heterogeneous Resources' advanced/005-compute-cluster/heterogeneous.md 005-compute-cluster
@@ -34,4 +31,9 @@ generate-slides:
 	$(IN_VENV) python slideshow/build_slideshow.py 'Storage Management' advanced/007-storage-management/storage.md 007-storage
 	$(IN_VENV) python slideshow/build_slideshow.py 'Complex Galaxy Server Examples' advanced/008-main-galaxy/usegalaxy.md 008-main-galaxy
 	$(IN_VENV) python slideshow/build_slideshow.py 'Advanced Troubleshooting' advanced/009-advanced-troubleshooting/troubleshooting.md 009-advanced-troubleshooting
+	#
+	$(IN_VENV) python slideshow/build_slideshow.py 'Basic Troubleshooting' sessions/basic-troubleshooting/basic-troubleshooting.md basic-troubleshooting
+	$(IN_VENV) python slideshow/build_slideshow.py 'Galaxy Architecture' sessions/architecture/galaxy_architecture.md architecture
+	$(IN_VENV) python slideshow/build_slideshow.py 'Galaxy Tool Basics' sessions/x01-tool-basics/tool-basics.md x01-tool-basics
+	$(IN_VENV) python slideshow/build_slideshow.py 'Advanced Tool Wrapping' sessions/x02-tools-advanced/tools-advanced.md x02-tools-advanced
 	echo "</body></html>" >> docs/index.html
