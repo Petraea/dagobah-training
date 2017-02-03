@@ -49,9 +49,9 @@ Built slides have [an index](https://gvlproject.github.io/dagobah-training/).
 | -------- | --------- | --------- | ----------- |
 | 09:00 | Welcome and questions |  | All |
 | 09:15 | Users, Groups, and Quotas | [Slides](https://gvlproject.github.io/dagobah-training/07-users-groups-quotas/users-groups-quotas.html) | (S) |
-| 10:30 | Updating tools and supporting multiple versions of tools | [Exercise](sessions/04-tool-shed/ex-tool-management.md) | (B) |
+| 10:30 | Upgrading to a new Galaxy release | [Slides](https://gvlproject.github.io/dagobah-training/08-upgrading-release/upgrading.html) | (E) + (R)? |
 | 11:00 | **Morning break** | | |
-| 11:15 | Upgrading to a new Galaxy release | [Slides](https://gvlproject.github.io/dagobah-training/09-upgrading-release/upgrading.html) | (E) + (R)? |
+| 11:15 | Updating tools and supporting multiple versions of tools | [Exercise](sessions/04-tool-shed/ex-tool-management.md) | (B) |
 | 12:30 | **Lunch** | | |
 | 13:15 | Improving the web serving experience with uWSGI | [Slides](https://gvlproject.github.io/dagobah-training/10-uwsgi/uwsgi.html) [Exercise](sessions/10-uwsgi/ex1-uwsgi.md) | (N) |
 | 14:15 | Controlling Galaxy with systemd and supervisor | [Slides](https://gvlproject.github.io/dagobah-training/11-systemd-supervisor/systemd-supervisor.html), [Exercise](sessions/11-systemd-supervisor/ex1-supervisor.md) | (N) |
@@ -72,7 +72,7 @@ Built slides have [an index](https://gvlproject.github.io/dagobah-training/).
 | 10:30 | **Morning break** | | |
 | 10:45 | Using Ansible to deploy Galaxy II |  | (S) + (N) |
 | 12:20 | **Lunch** | | |
-| 13:05 | OPEN - although a ~30 min session on job config would be good here? | | | |
+| 13:05 | Exploring the Galaxy job configuration file | [Slides](https://gvlproject.github.io/dagobah-training/15-job-conf/job-conf.html) | (N) |
 | 14:30 | Connecting Galaxy to a compute cluster I | [Slides](https://gvlproject.github.io/dagobah-training/005-compute-cluster/compute-cluster.html), [Exercise 1](sessions/005-compute-cluster/ex1-slurm.md), [Exercise 2](sessions/005-compute-cluster/ex2-advanced-job-configs.md) | (N)|
 | 15:30 | **Afternoon break** | | |
 | 15:45 | Connecting Galaxy to a compute cluster II |  | (N) |
