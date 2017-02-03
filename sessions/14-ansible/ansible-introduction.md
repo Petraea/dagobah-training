@@ -2,7 +2,7 @@ layout: true
 class: inverse
 ---
 class: special, center
-![GATC Logo](../shared-images/AdminTraining2016-250.png)
+![GATC Logo](../shared-images/gatc2017_logo.png)
 
 # Ansible and Galaxy - Part 1
 
@@ -10,7 +10,7 @@ class: special, center
 **Slides: @afgane, @nuwang, @Slugger70**
 
 
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 
 layout: true
@@ -18,7 +18,7 @@ class: left, inverse
 
 ---
 class: left, middle, center
-![GATC Logo](../shared-images/AdminTraining2016-100.png)
+![GATC Logo](../shared-images/gatc2017_logo_150.png)
 
 ## Please interrupt
 
@@ -26,10 +26,10 @@ class: left, middle, center
 
 *We are here to answer questions!*
 
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  Overview
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  Overview
 .large[
 * What is Ansible
 * Galaxy and Ansible
@@ -39,10 +39,10 @@ Later in Part 2
 * Extending and customising Galaxy with Ansible
 ]
 
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  Overview
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  Overview
 .large[
 * **What is Ansible**
 * Galaxy and Ansible
@@ -52,10 +52,10 @@ Later in Part 2
 * Extending and customising Galaxy with Ansible
 ]
 
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  What is Ansible
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  What is Ansible
 .large[
 * Automation tool for configuring and managing computers. (c.f. Puppet, Chef etc.)
 * Initial release: Feb. 2012
@@ -63,10 +63,10 @@ class: left
 ]
 ![ansible-vanilla.png](images/ansible-vanilla.png)
 
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  Why?
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  Why?
 .large[
 * Avoid forgetting what you did to install and configure some piece of software
 * Codify knowledge about a system
@@ -74,10 +74,10 @@ class: left
 * Make it programmable - “Infrastructure as Code”
 ]
 .right[![ansible-logo](images/ansible-logo.png)]
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  Features of Ansible
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  Features of Ansible
 .large[
 * Easy to learn
   * Playbooks in YAML, Templates in Jinja2, Inventory in INI file
@@ -94,7 +94,7 @@ class: left
 ]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  But wait! There's more
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  But wait! There's more
 .large[
 * Supports push or pull
   * Push by default but use cron job to make it pull
@@ -111,7 +111,7 @@ class: left
 
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  Ansible structure
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  Ansible structure
 .large[
 * Ansible scripts are called playbooks
 * Scripts written as simple yaml files
@@ -122,10 +122,10 @@ class: left
   * cron, mount etc
 ]
 [http://docs.ansible.com/ansible/modules_by_category.html](http://docs.ansible.com/ansible/modules_by_category.html)
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  Ansible playbook layout
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  Ansible playbook layout
 
 
 ``` text
@@ -148,10 +148,10 @@ class: left
 └── README.md
 ```
 
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png) Yet Another Markup Language
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png) Yet Another Markup Language
 .large[
 * But YAML is a structured language with a defined syntax (like JSON or XML)
 ]
@@ -168,10 +168,10 @@ list:
   - yes
 ```
 
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  Ansible inventory
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  Ansible inventory
 * An ini file.
 * List of remote machines to run ansible on
 * Can have groups
@@ -190,10 +190,10 @@ login5.stampede.tacc.utexas.edu
 jetstream-tacc0.galaxyproject.org
 jetstream-iu0.galaxyproject.org
 ```
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  Ansible Variables
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  Ansible Variables
 .left-column-equal[
 **Group Variables**
 
@@ -220,10 +220,10 @@ galaxy_installer: true
 ```
 ]
 
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  Ansible Tasks
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  Ansible Tasks
 .large[
 * Peform a task on the inventory
 ]
@@ -245,10 +245,10 @@ class: left
       when: "{{ ansible_os_family }} == 'Debian'"
     ```
     
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  Ansible Tasks
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  Ansible Tasks
 .large[
 * A more complex task:
 ]
@@ -264,10 +264,10 @@ class: left
     - update supervisor
   when: "{{ ansible_os_family }} == 'Debian'"
 ```
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  Ansible Handlers
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  Ansible Handlers
 * Syntax is the same as tasks, but these are only run when triggered by a notify.
 
 * Task:
@@ -288,17 +288,17 @@ class: left
     name: ”postgresql-{{ postgresql_version }}”
     state: restarted
 ```
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  Roles contain tasks
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  Roles contain tasks
 
 ![ansible-roles-tasks.png](images/ansible-roles-tasks.png)
 
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  Plays
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  Plays
 .large[
 * Contain:
   * What hosts you want to run on
@@ -317,10 +317,10 @@ class: left
   roles:
     - natefoo.postgresql_objects
 ```
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  Plays and Tags
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  Plays and Tags
 
 * Plays can have tags associated with them
 
@@ -344,30 +344,30 @@ class: left
 `ansible-playbook -i inv_file playbook.yml --tags galaxy_setup`
 
 
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  How Ansible works
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  How Ansible works
 
 ![how-ansible-works.png](images/how-ansible-works.png)
 
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  Exercise Time!
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  Exercise Time!
 .large[
 In this exercise, we will:
 * Write an ansible script/role
 * Task will be to install tools into Galaxy
 * Will use existing scripts (bioblend)
 
-[Adding tools to Galaxy with Ansible](https://github.com/martenson/dagobah-training/blob/master/advanced/001-ansible/ex1-intro-ansible.md)
+[Adding tools to Galaxy with Ansible](https://github.com/gvlproject/dagobah-training/blob/master/sessions/14-ansible/ex1-intro-ansible.md)
 ]
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  Example role
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  Example role
 .large[
 * Galaxy project's role to install a Galaxy server.
 * Can be used in a playbook
@@ -375,10 +375,10 @@ class: left
 
 [https://github.com/galaxyproject/ansible-galaxy](https://github.com/galaxyproject/ansible-galaxy)
 ]
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  What's available
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  What's available
 .large[
 .left-column-equal[
 * Roles:
@@ -401,20 +401,20 @@ class: left
   * ansible-artimed
 ]
 ]
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
 class: left
-## ![GATC Logo](../shared-images/AdminTraining2016-100.png)  Exercise 2!
+## ![GATC Logo](../shared-images/gatc2017_logo_150.png)  Exercise 2!
 .large[
 In this exercise we will:
 * Look at how the Galaxy Ansible roles can be combined together to install Galaxy
 * We will work through the contents of the scripts.
 * Finally, as a demonstration, we will run the roles from a playbook.
 
-[Installing Galaxy with Ansible](https://github.com/martenson/dagobah-training/blob/master/advanced/001-ansible/ex2-galaxy-ansible.md)
+[Installing Galaxy with Ansible](https://github.com/gvlproject/dagobah-training/blob/master/sessions/14-ansible/ex2-galaxy-ansible.md)
 
 ]
 
 
-.footnote[\#usegalaxy \#GATC2016 / @galaxyproject]
+.footnote[\#usegalaxy \#GATC2017 / @galaxyproject]
 ---
