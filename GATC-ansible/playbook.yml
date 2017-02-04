@@ -8,7 +8,7 @@
     - name: Set the ubuntu password
       user:
         name: ubuntu
-        password: $6$Zt50hTrf7TH2BO$z9fYfErDMtM0RmWz8iaacny1tHnvpkm3CGUpQV1g3.Lu6BHrHtfkTWTrOA9f1eqbYwiUj1msGbFr6Y4W8laDM1
+        password: '$6$rounds=656000$FVCztO55xjNo/jO0$7EYyaFNeYMND8edk2BPnv6iDvMWFySZDgwnYNbarbSeD.jdlsE6yuOsDaRvw2LCv86fmk2eM7ZrjlXIWmjUw.0'
       become: yes
       become_user: root
         
