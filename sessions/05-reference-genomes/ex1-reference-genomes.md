@@ -392,7 +392,7 @@ You should see something like this:
 
 You should see the current contents of tool-data/all_fasta.loc
 
-* Under **Run Data Manager Tools**, click **Reference Genome - fetching**. The Reference Genome tool form from data_manager_fetch_genome_all_fasta is displayed.
+* Under **Run Data Manager Tools**, click **Reference Genome - fetching**. The Reference Genome tool form from data_manager_fetch_genome_all_fasta is displayed. NOTE: If you receive the error "Uncaught exception in exposed API method:", you will need to restart Galaxy first.
   * From the **DBKEY to assign to data:** list choose: *sacCer2*
   * Click **Execute**
 
@@ -423,7 +423,7 @@ In this part we will actually build the BWA index for sacCer2. It will automatic
 * Click on **BWA-MEM index builder** under *Run Data Manager Tools*
   * Select *S. cerevisiae sacCer2* for Source Fasta Sequence
   * Put sacCer2 into the other two blank fields.
-  * Click **Execute**
+  * Click **Execute**. NOTE: If oyu receive the error "Parameter all_fasta_source requires a value, but has no legal values defined.", you will need to restart Galaxy first.
 
 The new BWA index for sacCer2 will now be built and the .loc file will be filled in.
 

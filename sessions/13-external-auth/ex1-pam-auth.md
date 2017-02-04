@@ -1,10 +1,10 @@
-![GATC Logo](../../docs/shared-images/AdminTraining2016-100.png) ![galaxy logo](../../docs/shared-images/galaxy_logo_25percent_transparent.png)
+![GATC Logo](../../docs/shared-images/gatc2017_logo_150.png) ![galaxy logo](../../docs/shared-images/galaxy_logo_25percent_transparent.png)
 
-### GATC - 2016 - Salt Lake City
+### GATC - 2017 - Melbourne
 
 # PAM Authentication in Galaxy - Exercise
 
-#### Authors: Nate Coraor. 2016
+#### Authors: Nate Coraor. 2017
 
 ## Learning Outcomes
 
@@ -18,10 +18,10 @@
 
 **Part 1 - Install python-pam**
 
-We need to install `python-pam` into Galaxy's virtualenv, now located at `/srv/galaxy/server/.venv`. To do this, run:
+We need to install `python-pam` into Galaxy's virtualenv, `/srv/galaxy/venv`. To do this, run:
 
 ```console
-$ sudo -H -u galaxy /srv/galaxy/server/.venv/bin/pip install python-pam
+$ sudo -Hu galaxy /srv/galaxy/venv/bin/pip install python-pam
 Collecting python-pam
   Downloading python-pam-1.8.2.tar.gz
 Building wheels for collected packages: python-pam
@@ -36,9 +36,9 @@ You should consider upgrading via the 'pip install --upgrade pip' command.
 
 ## Section 2 - Update system
 
-We don't want to grant the `galaxyguest` user access to Galaxy or else we'd be sending our VM admin user passwords in the clear. Instead, we'll create a new system user, `galaxyuser`, to log in with. If you were connecting Galaxy to your institution's authentication system, you wouldn't perform the steps in this section. Creating users in that system would be done via whatever mechanisms are appropriate for that system.
+We don't want to grant the `ubuntu` or `galaxy` user access to Galaxy or else we'd be sending our VM admin and Galaxy user passwords in the clear. Instead, we'll create a new system user, `galaxyuser`, to log in with. If you were connecting Galaxy to your institution's authentication system, you wouldn't perform the steps in this section. Creating users in that system would be done via whatever mechanisms are appropriate for that system.
 
-Create the user `galaxyuser` and set a nontrivial password that is not the same as `galaxyguest`'s:
+Create the user `galaxyuser` and set a nontrivial password that is not the same as `ubuntu`'s:
 
 ```console
 $ sudo useradd -d /home/galaxyuser -m -s /bin/bash galaxyuser
@@ -67,24 +67,37 @@ $ sudo usermod -a -G shadow galaxy
 
 **Part 1 - Create an authentication config**
 
-Create a new config file, `/srv/galaxy/server/conf/auth_conf.xml`. To open as the `galaxy` user, you can use `sudo -H -u galaxy $EDITOR /srv/galaxy/server/config/auth_conf.xml`:
+Create a new config file, `/srv/galaxy/config/auth_conf.xml`:
+
+```console
+$ sudo -u galaxy -e /srv/galaxy/config/auth_conf.xml`:
 
 ```xml
 <?xml version="1.0"?>
 <auth>
-<authenticator>
-  <type>PAM</type>
-  <options>
-          <auto-register>True</auto-register>
-          <maildomain>example.com</maildomain>
-          <login-use-email>True</login-use-email>
-          <pam-service>sshd</pam-service>
-  </options>
-</authenticator>
+    <authenticator>
+        <type>PAM</type>
+        <options>
+            <auto-register>True</auto-register>
+            <maildomain>example.com</maildomain>
+            <login-use-email>True</login-use-email>
+            <pam-service>sshd</pam-service>
+        </options>
+    </authenticator>
 </auth>
 ```
 
 Let's take a look at the `sshd` PAM service in `/etc/pam.d/sshd` and discover how it works.
+
+By default, Galaxy will look for this file in `/srv/galaxy/server/config`. We need to fix this in `galaxy.ini`:
+
+```console
+$ sudo -u galaxy -e /srv/galaxy/config/galaxy.ini
+```
+
+```ini
+auth_config_file = /srv/galaxy/config/auth_conf.xml
+```
 
 Finally, restart Galaxy:
 
@@ -104,7 +117,7 @@ Go to http://yourgalaxyhost/ and log in (log out first if necessary) as `galaxyu
 
 **Part 3 - Optionally disable self registration and require login**
 
-To configure Galaxy in this way, edit the galaxy config file using `sudo -H -u galaxy $EDITOR /srv/galaxy/server/galaxy.ini`:
+To configure Galaxy in this way, edit the galaxy config file using `sudo -u galaxy -e /srv/galaxy/config/galaxy.ini`:
 
 ```ini
 require_login = True
@@ -115,4 +128,4 @@ Restart Galaxy with `sudo supervisorctl restart all`, then visit it in your brow
 
 **Part 3 - Undo changes**
 
-We don't want to leave Galaxy this way for the rest of our workshop. Undo the changes by removing `require_login` and `allow_user_creation` from `galaxy.ini`, and moving `auth_conf.xml` using `sudo -u galaxy mv /srv/galaxy/server/config/auth_conf.xml /srv/galaxy/server/config/auth_conf.xml.pam` and restarting Galaxy with `sudo supervisorctl restart all`.
+We don't want to leave Galaxy this way for the rest of our workshop. Undo the changes by removing `require_login` and `allow_user_creation` from `galaxy.ini`, and moving `auth_conf.xml` using `sudo -u galaxy mv /srv/galaxy/config/auth_conf.xml /srv/galaxy/config/auth_conf.xml.pam` and restarting Galaxy with `sudo supervisorctl restart all`.

@@ -1,10 +1,10 @@
-![GATC Logo](../../docs/shared-images/AdminTraining2016-100.png) ![galaxy logo](../../docs/shared-images/galaxy_logo_25percent_transparent.png)
+![GATC Logo](../../docs/shared-images/gatc2017_logo_150.png) ![galaxy logo](../../docs/shared-images/galaxy_logo_25percent_transparent.png)
 
-### GATC - 2016 - Salt Lake City
+### GATC - 2017 - Melbourne
 
 # Setup a production Galaxy with Ansible - Exercise.
 
-#### Authors: Nate Coraor, Enis Afgan, Nuwan Goonasekera, Simon Gladman. 2016
+#### Authors: Nate Coraor, Enis Afgan, Nuwan Goonasekera, Simon Gladman. 2017
 
 ## Learning Outcomes
 
@@ -27,17 +27,30 @@ In this exercise we will:
 1. Discuss the group vars file
 1. Go through the Ansible "galaxy" - an unfortunate name... (It's Ansible's toolshed.)
 
+## Section 0 - Undo what we've done so far.
+
+In the next section, we'll do with Ansible in a few minutes what we've done by hand over the last couple of days. To start, let's save what we've done:
+
+```console
+$ sudo supervisorctl shutdown
+$ sudo systemctl stop nginx postgresql proftpd
+$ for d in /srv/galaxy /etc/nginx /etc/supervisor /etc/proftpd /var/lib/postgresql
+do
+    sudo mv $d ${d}.old
+done
+$ sudo apt remove --purge nginx-extras postgresql postgresql-9.5 proftpd-basic proftpd-mod-pgsql uwsgi uwsgi-plugin-python supervisor
+$ sudo apt autoremove --purge
+$ sudo userdel galaxy
+$ sudo groupdel galaxy
+```
+
 ## Section 1 - The tutorial script source files.
-
-**The first thing we need to do is stop the old Galaxy server!**
-
-* Go to the /home/galaxyguest/galaxy directory and `sh ./run.sh --stop-daemon`
 
 Go to somewhere sensible on either your local machine or on your Galaxy server (/home/<your_username> would be sensible..)
 
 * Grab the following with wget or curl etc and then untar it.
 
-  `http://schd.ws/hosted_files/gcc16/e2/gcc2016-ansible.tar.gz`
+  `https://swift.rc.nectar.org.au:8888/v1/AUTH_377/public/Ansible_files/gat2017-ansible.tar.gz`
 
 This will copy the entire playbook and associated roles to somewhere we can look at it.
 
@@ -48,23 +61,9 @@ Have a look at the *playbook.yml* file. You'll notice that it contains quite a n
 1. Performs some system tasks (system packages, creates a galaxy user etc.)
 1. Installs postgres and nginx
 1. Configures postgres
-1. Install Galaxy
-1. Installs supervisor
-
-You'll notice another play there called *Install Galaxy tools*. This has "tags" set. You'll also notice that it's host is set to localhost. We are going to remove this play from the playbook. Remove the following:
-
-```yaml
-- name: Install Galaxy tools
-  hosts: localhost
-  connection: local
-  vars:
-    galaxy_tools_api_key: 8279a8ce0b68beebf5e3da5a295214ec
-    galaxy_tools_base_dir: /home/nate
-    galaxy_tools_galaxy_instance_url: http://t-nate.galaxyproject.org/
-  roles:
-    - galaxyprojectdotorg.galaxy-tools
-  tags: tools
-```
+1. Installs and configures Galaxy
+1. Installs and configures ProFTPD
+1. Installs and configures supervisor
 
 Take note of the fact that the playbook combines the individual roles to give us the desired outcome.
 
@@ -73,10 +72,6 @@ Take note of the fact that the playbook combines the individual roles to give us
 Where do the roles come from? Ansible has a "toolshed" like system called **Ansible Galaxy** - d'oh.
 
 Open the *commands.txt* file. You'll see a command to run the playbook followed by a series of commands that download the various roles from the Ansible galaxy and put them in an appropriate place in our scripts file tree.. e.g. `ansible-galaxy install -p roles galaxyprojectdotorg.postgresql`
-
-**We actually need to do one of these. The galaxy role needs updating.**
-
-* From the script root directory - `ansible-galaxy -p roles install -f galaxyprojectdotorg.galaxy`
 
 There are many roles available for download. They all have some meta data associated with them which has information on the role's author, keywords, dependencies, licenses, available platforms etc. All of the roles in our script have that information. Checkout the *main.yml* in any of our role's *meta* directory.
 
@@ -96,26 +91,15 @@ The roles that this playbook use are:
 | 3 | natefoo.postgresql_objects | Installs postgreSQL scripts to work with privileges etc. |  |
 | 4 | galaxyprojectdotorg.galaxy | Installs and configures Galaxy | galaxy_server_dir, galaxy_vcs (git or hg) |
 | 5 | supervisor | Installs supervisor configs for Galaxy | . |
+| 6 | proftpd | Installs ProFTPD configs for Galaxy | . |
 
 You'll note that these roles all have pretty good documentation on how to use them, which variables to set and how, and when they should be used. This makes it all much easier to understand.
 
 Have a look at each of the roles in turn, concentrating mainly on the variables (in the defaults/main.yml files and the vars directory if present.) By modifying these variables, you can customise things like, where postgrSQL keeps it's backups, where Galaxy is installed and many others.
 
-We'll need to update the supervisor role to ensure that supervisor is started. You can do so by adding the following to the bottom of `roles/supervisor/tasks/main.yml`.
-
-```yaml
-- name: Ensure supervisor is running
-  service:
-    name: supervisor
-    enabled: yes
-    state: started
-```
-
 **Part 4 - Run the playbook**
 
-To save everyone doing this, the demonstrator will run the role in the class. Ofcourse, you can run this role anytime you like later on.
-
-To run the role we will need a Linux instance (we will use ubuntu 16.04) with a set public/private keypair. We will also need to know it's ip address.
+To run the role we will need a Linux instance (we will use ubuntu 16.04) with a set public/private keypair, or we need to run the playbook "locally" (i.e. on the managed host itself). We will also need to know it's ip address.
 
 * Set all the variables in *group_vars/galaxy_servers.yml* as follows:
 
@@ -129,26 +113,44 @@ postgresql_objects_databases:
   - name: galaxy
     owner: galaxy
 
-galaxy_server_dir: /srv/galaxy/server
+galaxy_root_dir: /srv/galaxy
+galaxy_server_dir: "{{ galaxy_root_dir }}/server"
+galaxy_config_dir: "{{ galaxy_root_dir }}/config"
+galaxy_mutable_config_dir: "{{ galaxy_root_dir }}/config"
+galaxy_venv_dir: "{{ galaxy_root_dir }}/venv"
+galaxy_shed_tools_dir: "{{ galaxy_root_dir }}/shed_tools"
 galaxy_vcs: git
-galaxy_changeset_id: release_16.04
+galaxy_changeset_id: release_16.10
 
 galaxy_config:
   "app:main":
-    database_connection: postgresql:///galaxy
-    admin_users: nate@bx.psu.edu     # <---- Put your user email here
-    tool_dependency_dir: /srv/galaxy/deps
+    database_connection: postgresql:///galaxy?host=/var/run/postgresql
+    file_path: "{{ galaxy_root_dir }}/data"
+    tool_dependency_dir: "{{ galaxy_root_dir }}/dependencies"
+    admin_users: your@ema.il 											# <---- Put your user email here
+    galaxy_data_manager_data_path: "{{ galaxy_root_dir }}/tool-data"
     job_config_file: "{{ galaxy_config_dir }}/job_conf.xml"
+    auth_config_file: "{{ galaxy_config_dir }}/auth_conf.xml"
+    nginx_x_accel_redirect_base: /_x_accel_redirect
+    nginx_upload_store: "{{ galaxy_root_dir }}/upload_store"
+    nginx_upload_path: /_upload
+    ftp_upload_dir: "{{ galaxy_root_dir }}/ftp"
+    ftp_upload_site: galaxy.example.org
+    conda_auto_init: "True"
   "uwsgi":
-    processes: 1
+    processes: 2
+    threads: 2
     socket: 127.0.0.1:4001
-    pythonpath: "{{ galaxy_server_dir }}/lib"
-    threads: 4
+    pythonpath: lib
     master: True
+    logto: "{{ galaxy_root_dir }}/log/uwsgi.log"
+    logfile-chmod: 644
 
 galaxy_config_files:
   - src: files/galaxy/job_conf.xml
     dest: "{{ galaxy_config_dir }}/job_conf.xml"
+
+nginx_flavor: extras
 
 nginx_configs:
   - galaxy
@@ -156,6 +158,8 @@ nginx_configs:
 supervisor_configs:
   - galaxy
 
+proftpd_configs:
+  - galaxy
 ```
 
 * Set the contents of the *inventory* file appropriately.
