@@ -23,7 +23,15 @@ We'll use the system package manager method, but either method is fine.
 $ sudo apt install uwsgi uwsgi-plugin-python
 ```
 
+You'll also need to install the `uwsgidecorators` Python package into the virtualenv.<sup>[2]</sup> You can do this with:
+
+```console
+$ sudo -Hu galaxy /srv/galaxy/venv/bin/pip install uwsgidecorators
+```
+
 <sup>1. It is worth noting that Debian splits uWSGI plugins into an array of individual packages. When installing from `pip`, the entire application with all its standard plugins is built and installed.</sup>
+
+<sup>2. If we had installed uWSGI into the virtualenv using pip (method #2) this would not be necessary since installing uWSGI from the source package installs the `uwsgidecorators` package as well. Also worth noting, installing `python-uwsgidecorators` from APT would also be insufficient since the virtualenv does not include packages installed into Python's site- or dist-packages directories.</sup>
 
 ## Section 2 - Configure uWSGI
 
@@ -43,6 +51,7 @@ socket = 127.0.0.1:4001     # uwsgi protocol for nginx
 pythonpath = lib
 master = True
 logto = /srv/galaxy/log/uwsgi.log
+logfile-chmod = 644
 ```
 
 Then, save and quit your editor.

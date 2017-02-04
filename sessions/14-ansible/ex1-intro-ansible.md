@@ -118,9 +118,9 @@ The contents of the file need to look something like this:
 
 ``` yaml
 #The system user for Galaxy
-galaxy_user: galaxyguest #Set this to whatever system user has write access to all of the Galaxy files.
+galaxy_user: galaxy #Set this to whatever system user has write access to all of the Galaxy files.
 
-galaxy_server_url: http://localhost:8080/
+galaxy_server_url: http://localhost/
 
 # Blank variable to make sure it's defined
 galaxy_tools_api_key: ''
@@ -130,19 +130,15 @@ tools_admin_email: tool_install@tools.com
 tools_admin_username: tools
 tools_admin_password: CoolToolInstaller
 
-galaxy_server_dir: /home/galaxyguest/galaxy #Put the actual path to your Galaxy root here
+galaxy_server_dir: /srv/galaxy/server #Put the actual path to your Galaxy root here
 
 # A system path where a virtualend for Galaxy is installed
-galaxy_venv_dir: "{{ galaxy_server_dir }}/.venv"
+galaxy_venv_dir: "/srv/galaxy/venv"
 
 # A system path for Galaxy's main configuration file
-galaxy_config_file: "{{ galaxy_server_dir }}/config/galaxy.ini"
+galaxy_config_file: "/srv/galaxy/config/galaxy.ini"
 
-#The Galaxy pid and log file names.
-galaxy_pid_file: paster.pid
-galaxy_log_file: paster.log
-
-tool_conf: "{{ galaxy_server_dir}}/config/shed_tool_conf.xml"
+tool_conf: "/srv/galaxy/config/shed_tool_conf.xml"
 ```
 
 ## Section 2 - Build the tasks
@@ -186,7 +182,7 @@ Add the following to your tasks *main.yml*
 ```yaml
 
 - name: Create the bootstrap user
-  command: chdir="{{ galaxy_server_dir }}" .venv/bin/python scripts/manage_bootstrap_user.py -c "{{ galaxy_config_file }}" create -u "{{ tools_admin_username }}" -e "{{ tools_admin_email }}" -p "{{ tools_admin_password }}"
+  command: chdir="{{ galaxy_server_dir }}" {{ galaxy_venv_dir }}/bin/python scripts/manage_bootstrap_user.py -c "{{ galaxy_config_file }}" create -u "{{ tools_admin_username }}" -e "{{ tools_admin_email }}" -p "{{ tools_admin_password }}"
   register: api_key
   become: yes
   become_user: "{{ galaxy_user }}"
@@ -219,29 +215,20 @@ Add the following to your tasks *main.yml*
 - name: Insert some sections into the tool panel file
   lineinfile: dest="{{ tool_conf }}" insertbefore="^</toolbox>" line="{{ item }}" state=present
   with_items:
-    - "<section id='peak_calling' name='Peak Calling'>"
-    - "</section> #peak_calling"
-    - "<section id='cshl_library_information' name='CSHL Library Information'>"
-    - "</section> #cshl_library_information"
+    - '<section id="assembly" name="Assembly">'
+    - '</section> #assembly'
+    - '<section id="cshl_library_information" name="CSHL Library Information">'
+    - '</section> #cshl_library_information'
   become: yes
   become_user: "{{ galaxy_user }}"
 
 #restart Galaxy
-- name: stop Galaxy
-  command: sh "{{ galaxy_server_dir }}"/run.sh --pid-file "{{ galaxy_pid_file }}" --log-file "{{ galaxy_log_file }}" --stop-daemon
+- name: Restart Galaxy
+  supervisorctl: "name=gx: state=restarted"
   become: yes
-  become_user: "{{ galaxy_user }}"
-
-- name: Wait for Galaxy to stop
-  wait_for: port=8080 delay=5 state=stopped timeout=300
-
-- name: Start Galaxy
-  command: sh "{{ galaxy_server_dir }}/run.sh" --pid-file "{{ galaxy_pid_file }}" --log-file "{{ galaxy_log_file }}" --daemon
-  become: yes
-  become_user: "{{ galaxy_user }}"
 
 - name: Wait for Galaxy to start
-  wait_for: port=8080 delay=5 state=started timeout=600
+  wait_for: port=80 delay=5 state=started timeout=600
 
 #Install the tools!
 - name: Install the toolshed tools!
@@ -257,21 +244,12 @@ Add the following to your tasks *main.yml*
   become_user: "{{ galaxy_user }}"
 
 #Finally, restart Galaxy for good measure..
-- name: stop Galaxy
-  command: sh "{{ galaxy_server_dir }}/run.sh" --pid-file "{{ galaxy_pid_file }}" --log-file "{{ galaxy_log_file }}" --stop-daemon
+- name: Restart Galaxy
+  supervisorctl: "name=gx: state=restarted"
   become: yes
-  become_user: "{{ galaxy_user }}"
-
-- name: Wait for Galaxy to stop
-  wait_for: port=8080 delay=5 state=stopped timeout=300
-
-- name: Start Galaxy
-  command: sh "{{ galaxy_server_dir }}/run.sh" --pid-file "{{ galaxy_pid_file }}" --log-file "{{ galaxy_log_file }}" --daemon
-  become: yes
-  become_user: "{{ galaxy_user }}"
 
 - name: Wait for Galaxy to start
-  wait_for: port=8080 delay=5 state=started timeout=600
+  wait_for: port=80 delay=5 state=started timeout=600
 ```
 
 Phew. Done. Now we have our tasks to be completed.
@@ -295,7 +273,7 @@ Now we need to write the playbook to call the role we've created. The playbook c
 #
 - hosts: localhost
   connection: local
-  sudo: yes
+  become: yes
   roles:
     - role: galaxy-tool-install
 ```

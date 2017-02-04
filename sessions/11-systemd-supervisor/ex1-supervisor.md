@@ -70,7 +70,7 @@ We need to add a `[program:x]` section to manage the job handlers we added. Beca
 
 ```ini
 [program:handler]
-command         = python ./scripts/galaxy-main -c /srv/galaxy/config/galaxy.ini --server-name=handler%(process_num)s
+command         = python ./scripts/galaxy-main -c /srv/galaxy/config/galaxy.ini --server-name=handler%(process_num)s --log-file /srv/galaxy/log/handler%(process_num)s
 directory       = /srv/galaxy/server
 process_name    = handler%(process_num)s
 numprocs        = 2
@@ -140,8 +140,6 @@ $ sudo supervisorctl signal HUP gx:galaxy && sudo supervisorctl restart gx:handl
 ## Having trouble?
 
 - Logs in `/var/log/supervisor`
-- Program stdout accessible directly at `supervisorctl tail <program>` (these can also be found in `/var/log/supervisor`)
-- TIP: You may find it easier to work with the log files in `/srv/galaxy/log`. To do this, add `--log-file /srv/galaxy/log/handler%(process_num)s` to the `[program:handler]`'s `command`, and update supervisor with `sudo supervisorctl update`
 
 ## Further reading
 
