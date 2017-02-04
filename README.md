@@ -73,10 +73,10 @@ Built slides have [an index](https://gvlproject.github.io/dagobah-training/).
 | 10:45 | Using Ansible to deploy Galaxy II |  | (S) + (N) |
 | 12:20 | **Lunch** | | |
 | 13:05 | Exploring the Galaxy job configuration file | [Slides](https://gvlproject.github.io/dagobah-training/15-job-conf/job_conf.html) | (N) |
-| 13:50 | Connecting Galaxy to a compute cluster I | [Slides](https://gvlproject.github.io/dagobah-training/005-compute-cluster/compute-cluster.html), [Exercise 1](sessions/005-compute-cluster/ex1-slurm.md), [Exercise 2](sessions/005-compute-cluster/ex2-advanced-job-configs.md) | (N)|
+| 13:50 | Connecting Galaxy to a compute cluster I | [Slides](https://gvlproject.github.io/dagobah-training/16-compute-cluster/compute-cluster.html), [Exercise 1](sessions/16-compute-cluster/ex1-slurm.md), [Exercise 2](sessions/16-compute-cluster/ex2-advanced-job-configs.md) | (N)|
 | 15:30 | **Afternoon break** | | |
 | 15:45 | Connecting Galaxy to a compute cluster II |  | (N) |
-| 16:30 | Using heterogeneous compute resources | [Slides](https://gvlproject.github.io/dagobah-training/005-compute-cluster/heterogeneous.html), [Exercise](sessions/005-compute-cluster/ex3-pulsar.md) | (N) |
+| 16:30 | Using heterogeneous compute resources | [Slides](https://gvlproject.github.io/dagobah-training/17-heterogenous/heterogeneous.html), [Exercise](sessions/17-heterogenous/ex1-pulsar.md) | (N) |
 | 17:30 | Using public and private cloud compute resources | [Slides](https://gvlproject.github.io/dagobah-training/006-clouds/clouds.html) | (E) |
 | 18:00 | Close day 3 | | All |
 

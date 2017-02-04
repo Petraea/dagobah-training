@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Heterogeneous Resources</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
-  </head>
-  <body>
-    <textarea id="source">
 layout: true
 class: inverse, top, large
 
@@ -121,13 +112,4 @@ Pulsar "managers" provide job running interfaces:
 ---
 # Exercise
 
-[Running jobs on remote resources using Pulsar](https://github.com/martenson/dagobah-training/blob/master/advanced/005-compute-cluster/ex3-pulsar.md)
-
-    </textarea>
-    <script src="../static/remark-latest.min.js">
-    </script>
-    <script>
-      var slideshow = remark.create();
-    </script>
-  </body>
-</html>
+[Running jobs on remote resources using Pulsar](https://github.com/gvlproject/dagobah-training/blob/master/sessions/17-heterogenous/ex1-pulsar.md)

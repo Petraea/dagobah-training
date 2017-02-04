@@ -53,7 +53,7 @@ class: smaller
 ---
 # Exercise
 
-[Running Galaxy jobs with Slurm](https://github.com/martenson/dagobah-training/blob/master/advanced/005-compute-cluster/ex1-slurm.md)
+[Running Galaxy jobs with Slurm](https://github.com/gvlproject/dagobah-training/blob/master/sessions/16-compute-cluster/ex1-slurm.md)
 
 ---
 # Shared Filesystem
@@ -138,4 +138,4 @@ See: [Cluster documentation](https://wiki.galaxyproject.org/Admin/Config/Perform
 
 Explore different ways to route jobs to different compute resources
 
-[Advanced Galaxy Job Configurations](https://github.com/martenson/dagobah-training/blob/master/advanced/005-compute-cluster/ex2-advanced-job-configs.md)
+[Advanced Galaxy Job Configurations](https://github.com/gvlproject/dagobah-training/blob/master/sessions/16-compute-cluster/ex2-advanced-job-configs.md)

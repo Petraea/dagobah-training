@@ -24,10 +24,10 @@ generate-slides:
 	$(IN_VENV) python slideshow/build_slideshow.py 'External Authentication' sessions/13-external-auth/external-auth.md 13-external-auth
 	$(IN_VENV) python slideshow/build_slideshow.py 'Ansible and Galaxy - Part 1' sessions/14-ansible/ansible-introduction.md 14-ansible
 	$(IN_VENV) python slideshow/build_slideshow.py 'Galaxy Job Configuration' sessions/15-job-conf/job_conf.md 15-job-conf
+	$(IN_VENV) python slideshow/build_slideshow.py 'Compute Cluster' sessions/16-compute-cluster/compute-cluster.md 16-compute-cluster
+	cp sessions/16-compute-cluster/slurm-wlm-configurator.html docs/16-compute-cluster
+	$(IN_VENV) python slideshow/build_slideshow.py 'Heterogeneous Resources' sessions/17-heterogenous/heterogeneous.md 17-heterogenous
 	#
-	$(IN_VENV) python slideshow/build_slideshow.py 'Compute Cluster' advanced/005-compute-cluster/compute-cluster.md 005-compute-cluster
-	cp advanced/005-compute-cluster/slurm-wlm-configurator.html docs/005-compute-cluster
-	$(IN_VENV) python slideshow/build_slideshow.py 'Heterogeneous Resources' advanced/005-compute-cluster/heterogeneous.md 005-compute-cluster
 	$(IN_VENV) python slideshow/build_slideshow.py 'Clouds' advanced/006-cloud/clouds.md 006-clouds
 	$(IN_VENV) python slideshow/build_slideshow.py 'Storage Management' advanced/007-storage-management/storage.md 007-storage
 	$(IN_VENV) python slideshow/build_slideshow.py 'Complex Galaxy Server Examples' advanced/008-main-galaxy/usegalaxy.md 008-main-galaxy

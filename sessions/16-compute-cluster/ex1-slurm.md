@@ -1,10 +1,10 @@
-![GATC Logo](../../docs/shared-images/AdminTraining2016-100.png) ![galaxy logo](../../docs/shared-images/galaxy_logo_25percent_transparent.png)
+![GATC Logo](../../docs/shared-images/gatc2017_logo_150.png) ![galaxy logo](../../docs/shared-images/galaxy_logo_25percent_transparent.png)
 
-### GATC - 2016 - Salt Lake City
+### GATC - 2017 - Melbourne
 
 # Running Galaxy Jobs with Slurm - Exercise
 
-#### Authors: Nate Coraor. 2016
+#### Authors: Nate Coraor. 2017
 
 ## Learning Outcomes
 
@@ -23,7 +23,7 @@ By the end of this tutorial, you should:
 Install Slurm from apt:
 
 ```console
-$ sudo apt-get install slurm-wlm
+$ sudo apt install slurm-wlm
 Reading package lists... Done
 Building dependency tree       
 Reading state information... Done
@@ -71,7 +71,7 @@ $
 
 Installed with Slurm is MUNGE (MUNGE Uid 'N Gid Emporium...) which authenticates users between cluster hosts. You would normally need to ensure the same Munge key is distributed across all cluster hosts (in `/etc/munge/munge.key`) - A great task for Ansible. However, the installation of the munge package has created a random key for you, and you will not need to distribute this since you'll run jobs locally.
 
-However, MUNGE installs in Ubuntu in a broken state(!): It does not like that `/var/log` is group writable. This can be seen by the failed `apt-get install` output, and some digging:
+However, MUNGE installs in Ubuntu in a broken state(!): It does not like that `/var/log` is group writable. This can be seen by the failed `apt install` output, and some digging:
 
 ```console
 $ systemctl status munge
@@ -111,10 +111,10 @@ Restart=on-abort
 WantedBy=multi-user.target
 ```
 
-You can then complete the installation by running `sudo apt-get install` without any package arguments:
+You can then complete the installation by running `sudo apt install` without any package arguments:
 
 ```console
-$ sudo apt-get install
+$ sudo apt install
 Reading package lists... Done
 Building dependency tree
 Reading state information... Done
@@ -173,7 +173,7 @@ Under Ubuntu, Slurm configs are stored in `/etc/slurm-llnl`<sup>[1]</sup>. No co
 
 Slurm provides a tool to create a configuration file. This is available online for the latest version, but Ubuntu 16.04 ships with Slurm 15.08. There's a copy of the configurator in `/usr/share/doc/slurmctld/slurm-wlm-configurator.html`. I've copied that to the training repository:
 
-[Slurm Version 15.08 Configuration Tool](https://martenson.github.io/dagobah-training/005-compute-cluster/slurm-wlm-configurator.html)
+[Slurm Version 15.08 Configuration Tool](https://gvlproject.github.io/dagobah-training/16-compute-cluster/slurm-wlm-configurator.html)
 
 Enter the following values into the configuration tool (leaving others at their defaults):
 - ControlMachine: `localhost`
