@@ -77,7 +77,7 @@ Built slides have [an index](https://gvlproject.github.io/dagobah-training/).
 | 15:30 | **Afternoon break** | | |
 | 15:45 | Connecting Galaxy to a compute cluster II |  | (N) |
 | 16:30 | Using heterogeneous compute resources | [Slides](https://gvlproject.github.io/dagobah-training/17-heterogenous/heterogeneous.html), [Exercise](sessions/17-heterogenous/ex1-pulsar.md) | (N) |
-| 17:30 | Using public and private cloud compute resources | [Slides](https://gvlproject.github.io/dagobah-training/006-clouds/clouds.html) | (E) |
+| 17:30 | Using public and private cloud compute resources | [Slides](https://gvlproject.github.io/dagobah-training/18-clouds/clouds.html) | (E) |
 | 18:00 | Close day 3 | | All |
 
 **We will most likely all go out for dinner together somewhere local tonight**

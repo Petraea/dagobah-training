@@ -27,8 +27,8 @@ generate-slides:
 	$(IN_VENV) python slideshow/build_slideshow.py 'Compute Cluster' sessions/16-compute-cluster/compute-cluster.md 16-compute-cluster
 	cp sessions/16-compute-cluster/slurm-wlm-configurator.html docs/16-compute-cluster
 	$(IN_VENV) python slideshow/build_slideshow.py 'Heterogeneous Resources' sessions/17-heterogenous/heterogeneous.md 17-heterogenous
+	$(IN_VENV) python slideshow/build_slideshow.py 'Clouds' sessions/18-clouds/clouds.md 18-clouds
 	#
-	$(IN_VENV) python slideshow/build_slideshow.py 'Clouds' advanced/006-cloud/clouds.md 006-clouds
 	$(IN_VENV) python slideshow/build_slideshow.py 'Storage Management' advanced/007-storage-management/storage.md 007-storage
 	$(IN_VENV) python slideshow/build_slideshow.py 'Complex Galaxy Server Examples' advanced/008-main-galaxy/usegalaxy.md 008-main-galaxy
 	$(IN_VENV) python slideshow/build_slideshow.py 'Advanced Troubleshooting' advanced/009-advanced-troubleshooting/troubleshooting.md 009-advanced-troubleshooting
