@@ -28,7 +28,7 @@ We will be using two different methods.
 
 *fig 1. A schematic layout of the of Interplay between Built-in Data and Galaxy Tools*
 
-![schematic](../../docs/06-reference-genomes/images/data_managers_schematic_overview.png)
+![schematic](../../docs/05-reference-genomes/images/data_managers_schematic_overview.png)
 
 ## Section 1 - \*.loc files 101: Doing it manually!
 
@@ -365,7 +365,7 @@ Make sure you are logged in as an Admin user on your Galaxy server. Then, from t
 <tables>
 <table comment_char="#" name="all_fasta">
         <columns>value, dbkey, name, path</columns>
-        <file path="/Users/Simon/code/galaxy_admin_course/galaxy/tool-data/toolshed.g2.bx.psu.edu/repos/devteam/data_manager_fetch_genome_all_fasta/fb744a070bee/all_fasta.loc" />
+        <file path="~/galaxy/tool-data/toolshed.g2.bx.psu.edu/repos/devteam/data_manager_fetch_genome_all_fasta/fb744a070bee/all_fasta.loc" />
         <tool_shed_repository>
             <tool_shed>toolshed.g2.bx.psu.edu</tool_shed>
             <repository_name>data_manager_fetch_genome_all_fasta</repository_name>
