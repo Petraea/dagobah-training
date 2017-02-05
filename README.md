@@ -92,7 +92,7 @@ Built slides have [an index](https://gvlproject.github.io/dagobah-training/).
 | 10:30 | **Morning break** | | |
 | 10:50 | Containerize all the things: Galaxy in Docker and Docker in Galaxy | | (B) |
 | 12:30 | **Lunch** | | |
-| 13:15 | Running Jupyter in Galaxy with Galaxy Interactive Environments | [Slides + Exercise](https://gist.github.com/natefoo/73bdcd9d467efd8d333ec15719e71108) | (B) + (N) |
+| 13:15 | Running Jupyter in Galaxy with Galaxy Interactive Environments | [Exercise](sessions/21-gie/ex1-jupyter.md) | (B) + (N) |
 | 14:30 | When things go wrong: Galaxy Server Troubleshooting | [Slides](https://gvlproject.github.io/dagobah-training/22-troubleshooting/troubleshooting.html) | (N) |
 | 15:30 | **Afternoon break** | | |
 | 15:45 | OPEN: Submitted topics | | |
