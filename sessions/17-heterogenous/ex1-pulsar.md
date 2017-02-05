@@ -1,19 +1,10 @@
-![GATC Logo](../../docs/shared-images/AdminTraining2016-100.png) ![galaxy logo](../../docs/shared-images/galaxy_logo_25percent_transparent.png)
+![GATC Logo](../../docs/shared-images/gatc2017_logo_150.png) ![galaxy logo](../../docs/shared-images/galaxy_logo_25percent_transparent.png)
 
-### GATC - 2016 - Salt Lake City
+### GATC - 2017 - Melbourne
 
 # Running jobs on remote resources using Pulsar - Exercise
 
-#### Authors: Nate Coraor. 2016
-
-## Learning Outcomes
-
-By the end of this tutorial, you should:
-
-1.
-
-## Introduction
-
+#### Authors: Nate Coraor. 2017
 
 ## Section 1 - Pulsar installation
 
@@ -37,7 +28,7 @@ $ sudo chown pulsar:pulsar /srv/pulsar
 Now it should be possible to create a new virtualenv in that directory. Start by getting a shell as the `pulsar` user:
 
 ```console
-galaxyguest$ sudo -H -u pulsar -s
+ubuntu$ sudo -H -u pulsar -s
 pulsar$ virtualenv /srv/pulsar
 Running virtualenv with interpreter /usr/bin/python2
 New python executable in /srv/pulsar/bin/python2
@@ -111,7 +102,7 @@ Installing collected packages: webob, six, pyyaml, psutil, paste, PasteDeploy, P
 Successfully installed PasteDeploy-1.5.2 PasteScript-2.0.2 docutils-0.12 galaxy-lib-16.10.10 paste-2.0.3 psutil-4.4.2 pulsar-app-0.7.3 pyyaml-3.12 six-1.10.0 webob-1.6.2
 ```
 
-If `psutil` fails to compile due to a missing header `Python.h`, that's because the `python-dev` package has not been installed yet. Do that with `sudo apt-get install python-dev` as the `galaxyguest` user and rerun the `pip install` above (as the `pulsar` user with the virtualenv activated).
+If `psutil` fails to compile due to a missing header `Python.h`, that's because the `python-dev` package has not been installed yet. Do that with `sudo apt-get install python-dev` as the `ubuntu` user and rerun the `pip install` above (as the `pulsar` user with the virtualenv activated).
 
 We'll be using a few optional Pulsar features which have additional dependencies. Install these dependencies now with:
 
@@ -189,7 +180,7 @@ Investigate the config files created in `/srv/pulsar/etc`:
 
 **Part 2 - Additional configuration**
 
-You can see that `app.yml` is minimally configured. We want to add to this. The full suite of options available for app.yml is explained in [app.yml.sample in the Pulsar source](https://github.com/galaxyproject/pulsar/blob/master/app.yml.sample). I have made [a copy of app.yml.sample into the training materials with syntax highlighting](https://github.com/martenson/dagobah-training/blob/master/advanced/005-compute-cluster/app.sample.yml).
+You can see that `app.yml` is minimally configured. We want to add to this. The full suite of options available for app.yml is explained in [app.yml.sample in the Pulsar source](https://github.com/galaxyproject/pulsar/blob/master/app.yml.sample). I have made [a copy of app.yml.sample into the training materials with syntax highlighting](https://github.com/gvlproject/dagobah-training/blob/master/sessions/17-heterogenous/app.sample.yml).
 
 Add the following to `app.yml`:
 
@@ -200,7 +191,13 @@ tool_dependency_dir: /srv/pulsar/var/deps
 dependency_resolvers_config_file: /srv/pulsar/etc/dependency_resolvers_conf.xml
 ```
 
-We've referenced a number of new directories in `app.yml`, and a new config file, `dependency_resolvers_conf.xml`. For the former, we need to create the base directory with `mkdir /srv/pulsar/var`. The subdirectories will be created automatically. The latter config file needs to be created. Luckily, it's the same format as Galaxy's dependency resolver config. We want to instruct Pulsar to use Conda to resolve dependencies, and we want to automatically install Conda and any missing dependencies at runtime.
+We've referenced a number of new directories in `app.yml`, and a new config file, `dependency_resolvers_conf.xml`. For the former, we need to create the base directory with:
+
+```console
+$ mkdir /srv/pulsar/var
+```
+
+The subdirectories will be created automatically. The latter config file needs to be created. Luckily, it's the same format as Galaxy's dependency resolver config. We want to instruct Pulsar to use Conda to resolve dependencies, and we want to automatically install Conda and any missing dependencies at runtime.
 
 Create a new file `dependency_resolvers_conf.xml` in an editor and add the following contents:
 
@@ -221,6 +218,7 @@ processes = 1
 enable-threads = True
 buffer-size = 16384
 logto = /srv/pulsar/var/uwsgi.log
+logfile-chmod = 644
 ```
 
 **Part 3 - Configure Supervisor**
@@ -233,7 +231,7 @@ environment     = VIRTUAL_ENV="/srv/pulsar",PATH="/srv/pulsar/bin:%(ENV_PATH)s"
 stopsignal      = INT
 ```
 
-All we need to do is drop this in to `/etc/supervisor/conf.d`. As the `galaxyguest` user, you can:
+All we need to do is drop this in to `/etc/supervisor/conf.d`. As the `ubuntu` user, you can:
 
 ```console
 $ sudo cp /srv/pulsar/etc/supervisor.conf /etc/supervisor/conf.d/pulsar.conf
@@ -359,7 +357,7 @@ drwxr-xr-x  3 pulsar pulsar 4096 Nov  6 12:01 ssl
 
 **Part 1 - Galaxy job configuration**
 
-As with all other aspects of running Galaxy jobs, we configure Galaxy's side in `job_conf.xml`. As the `galaxy` user (or `sudo -u galaxy` as `galaxyguest`) open `/srv/galaxy/server/job_conf.xml` in an editor. First, add a new job runner plugin for the RESTful Pulsar:
+As with all other aspects of running Galaxy jobs, we configure Galaxy's side in `job_conf.xml`. As the `galaxy` user (or `sudo -u galaxy` as `ubuntu`) open `/srv/galaxy/config/job_conf.xml` in an editor. First, add a new job runner plugin for the RESTful Pulsar:
 
 ```xml
         <plugin id="pulsar_rest" type="runner" load="galaxy.jobs.runners.pulsar:PulsarRESTJobRunner" />
@@ -388,7 +386,7 @@ Now, restart your Galaxy server:
 
 ```console
 $ sudo supervisorctl restart gx:*
-Gx:handler0: stopped
+gx:handler0: stopped
 gx:handler1: stopped
 gx:galaxy: stopped
 gx:galaxy: started
@@ -433,15 +431,40 @@ We'll update our trusty Multicore tool to have a simple conda dependency on `zli
 Restart Galaxy with `sudo supervisorctl restart gx:*` to read the updated tool config. Then, follow the Pulsar log with `tail -f /srv/pulsar/var/uwsgi.log`:
 
 ```
+2017-02-05 00:58:14,522 DEBUG [pulsar.managers.staging.pre][[manager=_default_]-[action=preprocess]-[job=18]] Staging input 'dataset_13.dat' via FileAction[url=http://localhost/api/jobs/2d9035b3fc152403/files?job_key=7052ed81ab8dbc36&path=/srv/galaxy/data/000/dataset_13.dat&file_type=inputpath=/srv/galaxy/data/000/dataset_13.dataction_type=remote_transfer] to /srv/pulsar/var/jobs/18/inputs/dataset_13.dat
+2017-02-05 00:58:14,542 DEBUG [pulsar.managers.base][[manager=_default_]-[action=preprocess]-[job=18]] job_id: 18 - Checking authorization of command_line [echo "Running with '${GALAXY_SLOTS:-1}' threads" > "/srv/pulsar/var/jobs/18/outputs/dataset_18.dat"; return_code=$?; sh -c "exit $return_code"]
+[pid: 14165|app: 0|req: 7/7] 127.0.0.1 () {30 vars in 451 bytes} [Sun Feb  5 00:58:14 2017] GET /jobs/18/status?job_id=18&private_token=foo => generated 64 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 79 bytes (1 switches on core 0)
+Fetching package metadata ...............
+[pid: 14165|app: 0|req: 8/8] 127.0.0.1 () {30 vars in 452 bytes} [Sun Feb  5 00:58:15 2017] GET /jobs/18/status?job_id=18&private_token=foo => generated 64 bytes in 0 msecs (HTTP/1.1 200) 2 headers in 79 bytes (1 switches on core 0)
+Solving package specifications: ..........
+
+Package plan for installation in environment /srv/pulsar/var/deps/_conda/envs/__zlib@1.2.8:
+
+The following NEW packages will be INSTALLED:
+
+    zlib: 1.2.8-3
+
+Linking packages ...
+[      COMPLETE      ]|##################################################| 100%
+#
+# To activate this environment, use:
+# > source activate __zlib@1.2.8
+#
+# To deactivate this environment, use:
+# > source deactivate __zlib@1.2.8
+#
+
+2017-02-05 00:58:23,157 DEBUG [pulsar.managers.base.base_drmaa][[manager=_default_]-[action=preprocess]-[job=18]] Not native specification supplied, DRMAA job will be submitted with default parameters.
+2017-02-05 00:58:23,161 INFO  [pulsar.managers.queued_drmaa][[manager=_default_]-[action=preprocess]-[job=18]] Submitted DRMAA job with Pulsar job id 18 and external id 16
+2017-02-05 00:58:23,783 INFO  [pulsar.managers.stateful][uWSGIWorker1Core0] Status of job [18] changed to [running]. No callbacks enabled.
+[pid: 14165|app: 0|req: 16/16] 127.0.0.1 () {30 vars in 452 bytes} [Sun Feb  5 00:58:23 2017] GET /jobs/18/status?job_id=18&private_token=foo => generated 58 bytes in 4 msecs (HTTP/1.1 200) 2 headers in 79 bytes (1 switches on core 0)
+2017-02-05 00:58:25,854 INFO  [pulsar.client.staging.down][[manager=_default_]-[action=postprocess]-[job=18]] collecting output None with action FileAction[url=http://localhost/api/jobs/2d9035b3fc152403/files?job_key=7052ed81ab8dbc36&path=/srv/galaxy/data/000/dataset_18.dat&file_type=outputpath=/srv/galaxy/data/000/dataset_18.dataction_type=remote_transfer]
+2017-02-05 00:58:25,917 INFO  [pulsar.managers.stateful][[manager=_default_]-[action=postprocess]-[job=18]] Status of job [18] changed to [complete]. No callbacks enabled.
 ```
 
 Conda has installed `zlib` for us and set it up as a dependency for the job.
 
-## So, what did we learn?
-
-Hopefully, you now understand:
-- 
-
 ## Further Reading
 
-- 
+- [Pulsar documentation](http://pulsar.readthedocs.org/)
+- [Pulsar documentation in job_conf.xml](https://github.com/galaxyproject/galaxy/blob/dev/config/job_conf.xml.sample_advanced)
