@@ -365,7 +365,7 @@ Make sure you are logged in as an Admin user on your Galaxy server. Then, from t
 <tables>
 <table comment_char="#" name="all_fasta">
         <columns>value, dbkey, name, path</columns>
-        <file path="~/galaxy/tool-data/toolshed.g2.bx.psu.edu/repos/devteam/data_manager_fetch_genome_all_fasta/fb744a070bee/all_fasta.loc" />
+        <file path="/srv/galaxy/tool-data/toolshed.g2.bx.psu.edu/repos/devteam/data_manager_fetch_genome_all_fasta/fb744a070bee/all_fasta.loc" />
         <tool_shed_repository>
             <tool_shed>toolshed.g2.bx.psu.edu</tool_shed>
             <repository_name>data_manager_fetch_genome_all_fasta</repository_name>
@@ -386,7 +386,7 @@ From the Galaxy Admin page:
 
 You should see something like this:
 
-![nearly empty data manager tool list](../../docs/06-reference-genomes/images/nearly_empty_data_manager_tool_list.png)
+![nearly empty data manager tool list](../../docs/05-reference-genomes/images/nearly_empty_data_manager_tool_list.png)
 
 * Click on **all_fasta** under *View Tool Data Table Entries*
 
@@ -402,7 +402,7 @@ If you look at your "Saved Histories" now, you will see a new history called "Da
 
 You should see that sacCer2 has been added to all_fasta.
 
-![all_fasta.png](../../docs/06-reference-genomes/images/all_fasta.png)
+![all_fasta.png](../../docs/05-reference-genomes/images/all_fasta.png)
 
 **Part 3: Download and install the BWA data manager**
 
