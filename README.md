@@ -88,13 +88,13 @@ Built slides have [an index](https://gvlproject.github.io/dagobah-training/).
 | **Time** | **Topic** | **Links** | **Instructor** |
 | -------- | --------- | --------- | ----------- |
 | 09:00 | Welcome and questions |  | All |
-| 09:15 | Storage management and using heterogeneous storage services | [Slides](https://gvlproject.github.io/dagobah-training/007-storage/storage.html), [Exercise](sessions/007-storage-management/ex1-objectstore.md) | (N) |
+| 09:15 | Storage management and using heterogeneous storage services | [Slides](https://gvlproject.github.io/dagobah-training/19-storage/storage.html), [Exercise](sessions/19-storage/ex1-objectstore.md) | (N) |
 | 10:30 | **Morning break** | | |
 | 10:50 | Containerize all the things: Galaxy in Docker and Docker in Galaxy | | (B) |
 | 12:30 | **Lunch** | | |
 | 13:15 | Running Jupyter in Galaxy with Galaxy Interactive Environments | [Slides + Exercise](https://gist.github.com/natefoo/73bdcd9d467efd8d333ec15719e71108) | (B) + (N) |
-| 14:30 | When things go wrong: Galaxy Server Troubleshooting I | [Slides](https://gvlproject.github.io/dagobah-training/11-basic-troubleshooting/basic-troubleshooting.html)| (N) |
+| 14:30 | When things go wrong: Galaxy Server Troubleshooting | [Slides](https://gvlproject.github.io/dagobah-training/22-troubleshooting/troubleshooting.html) | (N) |
 | 15:30 | **Afternoon break** | | |
-| 15:45 | When things go REALLY wrong: Galaxy Server Trobuleshooting II |  [Slides](https://gvlproject.github.io/dagobah-training/009-advanced-troubleshooting/troubleshooting.html#1) | |
-| 16:45 | Galaxy server architecture | [Slides](https://gvlproject.github.io/dagobah-training/12-architecture/galaxy_architecture.html) | | 
+| 15:45 | OPEN: Submitted topics | | |
+| 16:45 | Galaxy server architecture | [Slides](https://gvlproject.github.io/dagobah-training/23-architecture/galaxy_architecture.html) | | 
 | 18:00 | Wrap up and close | | All |

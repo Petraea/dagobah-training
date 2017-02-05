@@ -464,6 +464,21 @@ Linking packages ...
 
 Conda has installed `zlib` for us and set it up as a dependency for the job.
 
+**Part 2 - Undo**
+
+In order to simplify future sessions, we'll remove pulsar from the loop now by editing `job_conf.xml`, and configuring the `multi` tool to use slurm as we initially did. Simply comment and uncomment like so:
+
+```xml
+        <tool id="multi" destination="slurm-2c"/>
+<!--
+        <tool id="multi" destination="dtd"/>
+        <tool id="multi" destination="dynamic_cores_time" resources="multi_resources"/>
+        <tool id="multi" destination="pulsar"/>
+-->
+```
+
+Then, restart Galaxy.
+
 ## Further Reading
 
 - [Pulsar documentation](http://pulsar.readthedocs.org/)

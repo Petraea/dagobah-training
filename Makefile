@@ -28,13 +28,11 @@ generate-slides:
 	cp sessions/16-compute-cluster/slurm-wlm-configurator.html docs/16-compute-cluster
 	$(IN_VENV) python slideshow/build_slideshow.py 'Heterogeneous Resources' sessions/17-heterogenous/heterogeneous.md 17-heterogenous
 	$(IN_VENV) python slideshow/build_slideshow.py 'Clouds' sessions/18-clouds/clouds.md 18-clouds
+	$(IN_VENV) python slideshow/build_slideshow.py 'Storage Management' sessions/19-storage/storage.md 19-storage
+	$(IN_VENV) python slideshow/build_slideshow.py 'Basic Troubleshooting' sessions/22-troubleshooting/troubleshooting.md 22-troubleshooting
+	$(IN_VENV) python slideshow/build_slideshow.py 'Galaxy Architecture' sessions/23-architecture/galaxy_architecture.md 23-architecture
 	#
-	$(IN_VENV) python slideshow/build_slideshow.py 'Storage Management' advanced/007-storage-management/storage.md 007-storage
-	$(IN_VENV) python slideshow/build_slideshow.py 'Complex Galaxy Server Examples' advanced/008-main-galaxy/usegalaxy.md 008-main-galaxy
-	$(IN_VENV) python slideshow/build_slideshow.py 'Advanced Troubleshooting' advanced/009-advanced-troubleshooting/troubleshooting.md 009-advanced-troubleshooting
-	#
-	$(IN_VENV) python slideshow/build_slideshow.py 'Basic Troubleshooting' sessions/basic-troubleshooting/basic-troubleshooting.md basic-troubleshooting
-	$(IN_VENV) python slideshow/build_slideshow.py 'Galaxy Architecture' sessions/architecture/galaxy_architecture.md architecture
 	$(IN_VENV) python slideshow/build_slideshow.py 'Galaxy Tool Basics' sessions/x01-tool-basics/tool-basics.md x01-tool-basics
 	$(IN_VENV) python slideshow/build_slideshow.py 'Advanced Tool Wrapping' sessions/x02-tools-advanced/tools-advanced.md x02-tools-advanced
+	$(IN_VENV) python slideshow/build_slideshow.py 'Complex Galaxy Server Examples' sessions/x03-main-galaxy/usegalaxy.md x03-main-galaxy
 	echo "</body></html>" >> docs/index.html
