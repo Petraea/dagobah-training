@@ -1,10 +1,10 @@
-![GATC Logo](../../docs/shared-images/AdminTraining2016-100.png) ![galaxy logo](../../docs/shared-images/galaxy_logo_25percent_transparent.png)
+![GATC Logo](../../docs/shared-images/gatc2017_logo_150.png) ![galaxy logo](../../docs/shared-images/galaxy_logo_25percent_transparent.png)
 
-### GATC - 2016 - Salt Lake City
+### GATC - 2017 - Melbourne
 
-# Advanced Galaxy Job Configurations - Exercise
+# Running Galaxy Jobs with Slurm - Exercise
 
-#### Authors: Nate Coraor. 2016
+#### Authors: Nate Coraor. 2017
 
 ## Learning Outcomes
 
@@ -26,7 +26,7 @@ The tools that are added to Galaxy can have a wide variance in the compute resou
 We don't want to overload our training VMs trying to run real tools, so to demonstrate how to map a multicore tool to a multicore destination, we'll create a fake tool. Since most of these operations are performed as the `galaxy` user it's probably easiest to open a shell as that user before starting:
 
 ```console
-galaxyguest$ sudo -su galaxy
+ubuntu$ sudo -su galaxy
 galaxy$
 ```
 
@@ -50,7 +50,14 @@ Now, open a new file at `/srv/galaxy/server/tools/multi.xml` and add the content
 
 Of course, this tool doesn't actually *use* the allocated number of cores. In a real tool, you would call the tools's underlying command with whatever flag that tool provides to control the number of threads or processes it starts, such as `foobar -t \${GALAXY_SLOTS:-1} ...`.
 
-Up until now we've been using the default tool panel config file, located at `/srv/galaxy/server/config/tool_conf.xml.sample`. Copy this to `tool_conf.xml` in the same directory as the sample and open it up with an editor. We need to add the entry for our new tool. This can go anywhere, but I suggest putting it at the very top, between the opening `<toolbox>` and first `<section>`, so that it appears right at the top of the toolbox. The tag to add is:
+Up until now we've been using the default tool panel config file, located at `/srv/galaxy/server/config/tool_conf.xml.sample`. Copy this to `/srv/galaxy/config/tool_conf.xml` in the same directory as the sample and open it up with an editor. We need to add the entry for our new tool. This can go anywhere, but I suggest putting it at the very top, between the opening `<toolbox>` and first `<section>`, so that it appears right at the top of the toolbox.
+
+```console
+$ cp /srv/galaxy/server/config/tool_conf.xml.sample /srv/galaxy/config/tool_conf.xml
+$ vim /srv/galaxy/config/tool_conf.xml
+```
+
+The tag to add is:
 
 ```xml
   <tool file="multi.xml"/>
@@ -58,9 +65,13 @@ Up until now we've been using the default tool panel config file, located at `/s
 
 Galaxy needs to be instructed to read `tool_conf.xml` instead of `tool_conf.xml.sample`. Normally it does this automatically if `tool_conf.xml` exists, but the Ansible role we used to install Galaxy explicitly instructed Galaxy to load `tool_conf.xml.sample`.
 
-Edit `/srv/galaxy/server/galaxy.ini` and modify the value of `tool_config_file` to remove the `.sample`.
+Edit `/srv/galaxy/config/galaxy.ini` and modify the value of `tool_config_file` accordingly:
 
-Finally, in order to read the toolbox changes, Galaxy should be restarted. You'll need to return to the `galaxyguest` user to do this (since the `galaxy` user does not have `sudo` privileges). It is, as usual, `sudo supervisorctl restart all`.
+```ini
+tool_config_file = /srv/galaxy/config/tool_conf.xml,/srv/galaxy/config/shed_tool_conf.xml
+```
+
+Finally, in order to read the toolbox changes, Galaxy should be restarted. You'll need to return to the `ubuntu` user to do this (since the `galaxy` user does not have `sudo` privileges). It is, as usual, `sudo supervisorctl restart all`.
 
 Reload Galaxy in your browser and the new tool should now appear in the tool panel. If you have not already created a dataset in your history, upload a random text dataset. Once you have a dataset, click the tool's name in the tool panel, then click Execute. When your job completes, the output should be:
 
@@ -72,7 +83,7 @@ Running with '1' threads
 
 We want our tool to run with more than one core. To do this, we need to instruct Slurm to allocate more cores for this job. This is done in the job configuration file.
 
-As the `galaxy` user, open up `/srv/galaxy/server/job_conf.xml` and add the following new destination:
+As the `galaxy` user, open up `/srv/galaxy/config/job_conf.xml` and add the following new destination:
 
 ```xml
         <destination id="slurm-2c" runner="slurm">
@@ -102,7 +113,7 @@ Running with '2' threads
 
 Dynamic tool destinations utilize the dynamic job runner to provide dynamic job mapping functionality without having to explicitly write code to perform the mapping. The mapping functionality is mostly limited to input sizes, but often input size is the most important factor in deciding what resources to allocate for a job.
 
-Dynamic tool destinations are configured via a YAML file at `/srv/galaxy/server/config/tool_destinations.yml`. As before, we'll use a fake example. Create the file with the following contents:
+Dynamic tool destinations are configured via a YAML file at `/srv/galaxy/config/tool_destinations.yml`. As before, we'll use a fake example. Create the file with the following contents:
 
 ```yaml
 ---
@@ -124,7 +135,13 @@ The rule says:
   - If the input dataset is <16 bytes, run on the destination `slurm`
 - Else, run on the destination `local`
 
-Once the dynamic tool definition has been written, we need to update Galaxy's job configuration to use this rule. Open `/srv/galaxy/server/job_conf.xml` and add a DTD destination:
+We also need to inform Galaxy of the path to the file we've just created, which is done using the `tool_destinations_config_file` in `galaxy.ini`:
+
+```ini
+tool_destinations_config_file = /srv/galaxy/config/tool_destinations.yml
+```
+
+Once the dynamic tool definition has been written, we need to update Galaxy's job configuration to use this rule. Open `/srv/galaxy/job_conf.xml` and add a DTD destination:
 
 ```xml
         <destination id="dtd" runner="dynamic">
@@ -145,7 +162,7 @@ Also, comment out the previous `<tool>` definition for the `multi` tool, and rep
 
 Then, restart Galaxy with `sudo supervisorctl restart all`.
 
-**Part 2 - Verify***
+**Part 2 - Verify**
 
 Our rule specified that any invocation of the `multi` tool with an input dataset with size <16 bytes would run on the 1 core destination, whereas any with >= 16 bytes would run on the 2 core destination. To verify, create a dataset using the upload paste tool of just a few (<16) characters, and another with >16 characters and run the Multicore Tool on each. The former will run "with '1' thread" whereas the latter will run "with '2' threads".
 
@@ -155,7 +172,7 @@ Our rule specified that any invocation of the `multi` tool with an input dataset
 
 You may find that certain tools can benefit from having form elements added to them to allow for controlling certain job parameters, so that users can select based on their own knowledge. For example, a user might know that a particular set of parameters and inputs to a certain tool needs a larger memory allocation than the standard amount for a given tool. This of course assumes that your users are well behaved enough not to choose the maximum whenever available, although such concerns can be mitigated somewhat by the use of concurrency limits on larger memory destinations.
 
-Such form elements can be added to tools without modifying each tool's configuration file through the use of the **job resource parameters configuration file**, `/srv/galaxy/server/config/job_resource_params_conf.xml`. Create this file and add the following contents:
+Such form elements can be added to tools without modifying each tool's configuration file through the use of the **job resource parameters configuration file**, `/srv/galaxy/config/job_resource_params_conf.xml`. Create this file and add the following contents:
 
 ```xml
 <parameters>
@@ -168,6 +185,12 @@ Such form elements can be added to tools without modifying each tool's configura
 ```
 
 This defines two resource fields, a select box where users can choose between 1 and 2 cores, and a text entry field where users can input an integer value from 1-24 to set the walltime for a job.
+
+As usual, we need to instruct Galaxy of where to find this file in `galaxy.ini` using the `job_resource_params_file` option:
+
+```ini
+job_resource_params_file = /srv/galaxy/config/job_resource_params_conf.xml
+```
 
 **Part 2 - Configure Galaxy to use the resource selector**
 

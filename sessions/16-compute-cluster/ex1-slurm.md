@@ -248,7 +248,7 @@ If your node state is not `idle`, something has gone wrong. If your node state e
 
 **Part 1 - Test Slurm**
 
-We want to ensure that Slurm is actually able to run jobs. There are two ways this can be done:o
+We want to ensure that Slurm is actually able to run jobs. There are two ways this can be done:
 
 - `srun`: Run an interactive job (e.g. a shell, or a specific program with its stdin, stdout, and stderr all connected to your terminal.
 - `sbatch`: Run a batch job, with stdin closed and stdout/stderr redirected to a file.
@@ -262,7 +262,7 @@ Linux gat2016 4.4.0-31-generic #50-Ubuntu SMP Wed Jul 13 00:07:12 UTC 2016 x86_6
 
 Although it looks like this command ran as if I had not used `srun`, it was in fact routed through Slurm.
 
-Next, createa a test job script somewhere, such as in `~/sbatch-test.sh`. This should be a shell script and must include the shell "shebang" line:
+Next, create a test job script somewhere, such as in `~/sbatch-test.sh`. This should be a shell script and must include the shell "shebang" line:
 
 ```bash
 #!/bin/sh
@@ -336,13 +336,13 @@ The `galaxyprojectdotorg.galaxy` Ansible role *does* install conditional depende
 Assuming we will install DRMAA Python ourselves, we must:
 
 1. Become the `galaxy` user.
-2. Run `pip` from Galaxy's virtualenv in `/srv/galaxy/server/.venv`
+2. Run `pip` from Galaxy's virtualenv in `/srv/galaxy/venv`
 3. Install the `drmaa` package from PyPI.
 
-We can do this with a single command: `sudo -H -u galaxy /srv/galaxy/server/.venv/bin/pip install drmaa`:
+We can do this with a single command: `sudo -H -u galaxy /srv/galaxy/venv/bin/pip install drmaa`:
 
 ```console
-$ sudo -H -u galaxy /srv/galaxy/server/.venv/bin/pip install drmaa
+$ sudo -H -u galaxy /srv/galaxy/venv/bin/pip install drmaa
 Collecting drmaa
   Downloading drmaa-0.7.6-py2.py3-none-any.whl
 Installing collected packages: drmaa
@@ -357,12 +357,12 @@ $
 At the top of the stack sits Galaxy. Galaxy must now be configured to use the cluster we've just set up. The DRMAA Python documentation (and Galaxy's own documentation) instruct that you should set the `$DRMAA_LIBRARY_PATH` environment variable so that DRMAA Python can find `libdrmaa.so` (aka slurm-drmaa). Because Galaxy is now being started under supervisor, the environment that Galaxy starts under is controlled by the `environment` option in `/etc/supervisor/conf.d/galaxy.conf`. The `[program:handler]` should thus be updated to refer to the path to slurm-drmaa, which is `/usr/lib/slurm-drmaa/lib/libdrmaa.so.1`:
 
 ```ini
-environment     = VIRTUAL_ENV="/srv/galaxy/server/.venv",PATH="/srv/galaxy/server/.venv/bin:%(ENV_PATH)s",DRMAA_LIBRARY_PATH="/usr/lib/slurm-drmaa/lib/libdrmaa.so.1"
+environment     = VIRTUAL_ENV="/srv/galaxy/venv",PATH="/srv/galaxy/venv/bin:%(ENV_PATH)s",DRMAA_LIBRARY_PATH="/usr/lib/slurm-drmaa/lib/libdrmaa.so.1"
 ```
 
 This change is not read until `supervisord` is notified with `sudo supervisorctl update`, but we'll wait to do that until after we've updated Galaxy's job configuration.
 
-We need to modify `job_conf.xml` to instruct Galaxy's job handlers to load the Slurm job runner plugin, and set the Slurm job submission parameters. This file was installed by Ansible and can be found in `/srv/galaxy/server` (remember, it's owned by the `galaxy` user so you'll need to use `sudo` to edit it). A job runner plugin definition must have the `id`, `type`, and `load` attributes. The entire `<plugins>` tag group should look like:
+We need to modify `job_conf.xml` to instruct Galaxy's job handlers to load the Slurm job runner plugin, and set the Slurm job submission parameters. This file was installed by Ansible and can be found in `/srv/galaxy/config` (remember, it's owned by the `galaxy` user so you'll need to use `sudo` to edit it). A job runner plugin definition must have the `id`, `type`, and `load` attributes. The entire `<plugins>` tag group should look like:
 
 ```xml
     <plugins workers="4">
@@ -380,24 +380,20 @@ Next, we need to add a new destination for the Slurm job runner. This is a basic
     </destinations>
 ```
 
-To reread the job config, Galaxy must be restarted. You can do this with `sudo supervisorctl restart all`. Technically these changes only require restarting the handlers (if we were changing a tool-to-handler mapping it'd require restarting the web server as well) so `sudo supervisorctl restart gx:handler0 gx:handler1` would suffice.
+To reread the job config, Galaxy must be restarted. You can do this with `sudo supervisorctl restart all`. Technically these changes only require restarting the handlers (if we were changing a tool-to-handler mapping it'd require restarting the web server as well) so `sudo supervisorctl restart gx:handler0 gx:handler1` would suffice. However, the handlers will be restarted when we update supervisor to reread the config that we changed earlier. Do this now with `sudo supervisorctl update`
 
-Before you restart, you can follow the handler log files using `tail`: `tail -f /srv/galaxy/server/handler?.log`.
+Before you restart, you can follow the handler log files using `tail`: `tail -f /srv/galaxy/log/handler?.log`.
 
 ```xml
-$ sudo supervisorctl restart all
-gx:handler0: stopped
-gx:handler1: stopped
-gx:galaxy: stopped
-gx:handler0: started
-gx:handler1: started
-gx:galaxy: started
+$ sudo supervisorctl update
+gx: stopped
+gx: updated process group
 ```
 
 Two sections of the log output are of interest. First, when Galaxy parses `job_conf.xml`:
 
 ```
-galaxy.jobs DEBUG 2016-11-05 14:07:12,649 Loading job configuration from /srv/galaxy/server/job_conf.xml
+galaxy.jobs DEBUG 2016-11-05 14:07:12,649 Loading job configuration from /srv/galaxy/config/job_conf.xml
 galaxy.jobs DEBUG 2016-11-05 14:07:12,650 Read definition for handler 'handler0'
 galaxy.jobs DEBUG 2016-11-05 14:07:12,651 Read definition for handler 'handler1'
 galaxy.jobs DEBUG 2016-11-05 14:07:12,652 <handlers> default set to child with id or tag 'handlers'
