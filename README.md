@@ -22,6 +22,10 @@ Built slides have [an index](https://gvlproject.github.io/dagobah-training/).
 * (B)jörn Grüning - Head of Freiburg Galaxy Team, University of Freiburg, Germany
 * (R)oss Lazarus - Galaxy Project and formerly of Baker IDI, Australia.
 
+List of instances for course:
+
+[spreadsheet](https://docs.google.com/spreadsheets/d/1uaOpQcKNv6iOG8lbURW1_cFsLhrMrJivuQSh6Wfq7pM/edit?usp=sharing)
+
 ## Timetable
 #### Monday
 **6th February** - [Lab 14 Seminar Room, 700 Swanston St, Carlton, Victoria](https://goo.gl/maps/FD2cdrFeDfG2)
