@@ -227,8 +227,6 @@ A TS recipe how to install the dependency.
 class: smaller
 ### seqtk Conda package
 
-Conda recipe how to install the dependency.
-
 ```yml
 package:
   name: seqtk
