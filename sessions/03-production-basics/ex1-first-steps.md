@@ -114,7 +114,7 @@ esac
 Then, save and quit the editor. This file should be executable, make it so with `sudo chmod`:
 
 ```console
-$ sudo -u galaxy chmod +x /srv/galaxy/bin/galaxy
+$ sudo chmod +x /srv/galaxy/bin/galaxy
 ```
 
 Next, we'll create some Galaxy config files, starting from the samples:
