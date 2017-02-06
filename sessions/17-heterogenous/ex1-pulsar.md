@@ -237,6 +237,24 @@ All we need to do is drop this in to `/etc/supervisor/conf.d`. As the `ubuntu` u
 $ sudo cp /srv/pulsar/etc/supervisor.conf /etc/supervisor/conf.d/pulsar.conf
 ```
 
+One nuisance - the `/srv/pulsar/bin/pulsar` script forks to run uWSGI and so stopping Pulsar with supervisorctl will actually not properly stop Pulsar without one small change. Edit that file:
+
+```console
+$ sudo -u pulsar -e /srv/pulsar/bin/pulsar
+```
+
+Locate the following line:
+
+```bash
+    uwsgi --ini-paste "$PULSAR_CONFIG_FILE" "$@"
+```
+
+And prepend `exec` to it:
+
+```bash
+    exec uwsgi --ini-paste "$PULSAR_CONFIG_FILE" "$@"
+```
+
 **Part 4 - Run Pulsar**
 
 All that remains to be done is update supervisor so it reads the new config. This will automatically start Pulsar:
