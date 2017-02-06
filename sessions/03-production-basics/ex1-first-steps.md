@@ -88,7 +88,7 @@ $ sudo -u galaxy mkdir /srv/galaxy/{bin,config,data,log}
 Galaxy assumes that everything is located under the server directory. To separate things out, we'll create a small script to control the Galaxy server with that sets the location of Galaxy's primary config file:
 
 ```console
-$ sudo -e /srv/galaxy/bin/galaxy
+$ sudo -u galaxy -e /srv/galaxy/bin/galaxy
 ```
 
 And insert the following:
