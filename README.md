@@ -99,6 +99,6 @@ List of instances for course:
 | 13:15 | Running Jupyter in Galaxy with Galaxy Interactive Environments | [Exercise](sessions/21-gie/ex1-jupyter.md) | (B) + (N) |
 | 14:30 | When things go wrong: Galaxy Server Troubleshooting | [Slides](https://gvlproject.github.io/dagobah-training/22-troubleshooting/troubleshooting.html) | (N) |
 | 15:30 | **Afternoon break** | | |
-| 15:45 | OPEN: Submitted topics | | |
+| 15:45 | OPEN: Submitted topics | [link to nomination document](https://docs.google.com/document/d/1PTPulqS_Ki7DPmYYoUsdvfHyeJRQBP8jOS6kRl7_fZ4/edit?usp=sharing)| |
 | 16:45 | Galaxy server architecture | [Slides](https://gvlproject.github.io/dagobah-training/23-architecture/galaxy_architecture.html) | | 
 | 18:00 | Wrap up and close | | All |
