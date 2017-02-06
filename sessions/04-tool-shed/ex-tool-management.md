@@ -10,14 +10,14 @@ by @martenson
 
 ---
 ## Task 1
-*Your users want to use freebayes software on the instance you administer.*
-* Find what Tool Shed repository has freebayes tools in it.
+*Your users want to use bedtools on the instance you administer.*
+* Find what Tool Shed repository has bedtools tools in it.
 
 Hint: You can use search in https://toolshed.g2.bx.psu.edu/ or http://toolshed.tools.
 
 ---
 ## Task 2
-* Install [`devteam/freebayes`](https://toolshed.g2.bx.psu.edu/view/devteam/freebayes/) from MTS in revision `22:99684adf84de` into new section 'Freebayes' using TS dependencies.
+* Install [`iuc/bedtools`](https://toolshed.g2.bx.psu.edu/view/iuc/bedtools/) from MTS in revision `10:c78cf6fe3018` (2016-10-03) into new section 'BEDtools' using TS dependencies.
 
 Hints:
 - Note the revision, it is NOT the latest.
@@ -25,23 +25,23 @@ Hints:
 
 ---
 ## Task 3
-*New freebayes revision has been uploaded to the MTS.*
+*New bedtools revision has been uploaded to the MTS.*
 
-* Install [`devteam/freebayes`](https://toolshed.g2.bx.psu.edu/view/devteam/freebayes/) from MTS in revision `24:da6e10dee68b` into section 'New Freebayes'.
+* Install [`iuc/bedtools`](https://toolshed.g2.bx.psu.edu/view/iuc/bedtools/) from MTS in revision `13:fadebae7e69b` into section 'New BEDtools'.
 
 ---
 ## Task 4
-*Now you have two sections with two versions of freebayes. Confusing. You could uninstall it but you want users to be able to re-run jobs with old freebayes though.*
+*Now you have two sections with two versions of bedtools. Confusing. You could uninstall it but you want users to be able to re-run jobs with old bedtools though.*
 
-* Hide the Freebayes section (with the older tool) from the tool panel without uninstalling it.
+* Hide the BEDtools section (with the older tool) from the tool panel without uninstalling it.
 
 Hint: You need to modify `shed_tool_conf.xml` in order to do this.
 
 ---
 ## Task 5
-*You want to show both versions of freebayes and allow users to switch versions on the tool form*
+*You want to show both versions of bedtools and allow users to switch versions on the tool form*
 
-* Move freebayes revision `24:da6e10dee68b` into 'New Freebayes' section and display it.
+* Move bedtools revision `10:c78cf6fe3018` into 'New BEDtools' section and display it.
 
 Hint: tools with the same ID and different version in the same section will 'collapse' into one and offer the switch button.
 
@@ -49,7 +49,7 @@ Hint: tools with the same ID and different version in the same section will 'col
 ## Task 6
 *Now there is only one section we might not want to call it 'New'.*
 
-* Rename the 'New Freebayes' section to just 'Freebayes'.
+* Rename the 'New BEDtools' section to just 'BEDtools'.
 
 Hints:
 - You can rename sections using configuration file(s).
@@ -57,9 +57,9 @@ Hints:
 
 ---
 ## Task 7
-*The old freebayes version is no longer useful*
+*The old bedtools version is no longer useful*
 
-* Uninstall the revision `22:99684adf84de` of freebayes.
+* Uninstall the revision `10:c78cf6fe3018` of bedtools.
 
 ---
 ## Task 8
