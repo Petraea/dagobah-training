@@ -242,10 +242,12 @@ We will be adding a new built-in reference dataset, the sacCer1 genome build (go
   sacCer1     sacCer1 S. cerevisiae Oct. 2003 (SGD/sacCer1) (sacCer1) /srv/galaxy/server/tool-data/sacCer1/bwa_index/sacCer1/sacCer1.fa
   ```
 * Now, all that's left to do is add the `bwa_mem_index` data table to the tool data table config file. Make a copy from the sample and add the new table to the bottom:
+
   ```console
   cd /srv/galaxy/config
   vi tool_data_table_conf.xml
   ```
+
   ```xml
       <table name="bwa_mem_indexes" comment_char="#" allow_duplicate_entries="False">
           <columns>value, dbkey, name, path</columns>
