@@ -70,7 +70,8 @@ $ sudo usermod -a -G shadow galaxy
 Create a new config file, `/srv/galaxy/config/auth_conf.xml`:
 
 ```console
-$ sudo -u galaxy -e /srv/galaxy/config/auth_conf.xml`:
+$ sudo -u galaxy -e /srv/galaxy/config/auth_conf.xml
+```
 
 ```xml
 <?xml version="1.0"?>
