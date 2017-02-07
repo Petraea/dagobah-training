@@ -140,6 +140,12 @@ class: left
 ---
 # Log Files
 
+- Galaxy logs (`/srv/galaxy/log/*`)
+  - Web (uWSGI)
+  - Handler
+- nginx logs (`/var/log/nginx/*`)
+- supervisor logs (`/var/log/supervisor/*`)
+
 ---
 # DB Shell
 
@@ -334,3 +340,8 @@ What to back up:
 What not to back up:
 - Anything in `database/` not mentioned above
 - Job working directories
+
+---
+# Reports
+
+[Run Galaxy Reports - Exercise](https://github.com/gvlproject/dagobah-training/blob/master/sessions/12-monitoring-maintenance/ex1-reports.md)
