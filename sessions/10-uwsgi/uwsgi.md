@@ -17,9 +17,23 @@ Web/application/WSGI server
 Replaces `Paste#http` (see `galaxy.ini`)
 
 ---
+# The Python GIL
+
+![Python GIL](https://lh4.googleusercontent.com/HXDr4afwx28XEZgogOWBMEcaU0updIy_BsRqOnq7kaGVq3kEyXMlwmrDTvi9ZlMRI7fdW4TT5sPO4z_9kSVxlhrUznOdvK_rHQtP6pfic8ABrVcm3lOWPEoMH8sDKK2fMhw1YLI)
+
+.footnote[Image credit: [Dariusz Fryta](http://www.tivix.com/blog/lets-go-python/)]
+
+---
 # Why uWSGI?
 
+- Python GIL is a severe limitation for multicore servers
+- Isolate job functions from web functions
+  - Can be done with Paste, but uWSGI does it better/simpler
 - Work around the GIL without manually managing multiple Galaxy processes
+
+---
+# Why uWSGI?
+
 - Built in load balancing
 - Speak native high performance uWSGI protocol to nginx
 - Will be the default anyway
