@@ -149,3 +149,8 @@ Available [provider modules](https://github.com/galaxyproject/galaxy/tree/dev/li
 # Galaxy PAM Exercise
 
 [PAM Authentication in Galaxy - Exercise](https://github.com/gvlproject/dagobah-training/blob/master/sessions/13-external-auth/ex1-pam-auth.md)
+
+---
+# Upstream Auth Exercise
+
+[Upstream Authentication in Galaxy - Exercise](https://github.com/gvlproject/dagobah-training/blob/master/sessions/13-external-auth/ex2-upstream-auth.md)
