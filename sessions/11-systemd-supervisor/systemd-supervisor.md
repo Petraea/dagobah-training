@@ -53,15 +53,6 @@ proftpd                          RUNNING    pid 1916, uptime 8 days, 6:44:21
 ```
 
 ---
-# Supervisor
-
-We've already installed supervisor in the Ansible session. Take a look in:
-
-```
-/etc/supervisor
-```
-
----
 # Supervisor - program
 
 A config for running a Galaxy server under uWSGI has been installed at `/etc/supervisor/conf.d/galaxy.conf`:

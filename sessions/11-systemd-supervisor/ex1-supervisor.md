@@ -70,7 +70,7 @@ We need to add a `[program:x]` section to manage the job handlers we added. Beca
 
 ```ini
 [program:handler]
-command         = python ./scripts/galaxy-main -c /srv/galaxy/config/galaxy.ini --server-name=handler%(process_num)s --log-file /srv/galaxy/log/handler%(process_num)s
+command         = python ./scripts/galaxy-main -c /srv/galaxy/config/galaxy.ini --server-name=handler%(process_num)s --log-file /srv/galaxy/log/handler%(process_num)s.log
 directory       = /srv/galaxy/server
 process_name    = handler%(process_num)s
 numprocs        = 2
@@ -80,8 +80,6 @@ autorestart     = true
 startsecs       = 10
 user            = galaxy
 environment     = VIRTUAL_ENV="/srv/galaxy/venv",PATH="/srv/galaxy/venv/bin:%(ENV_PATH)s"
-stdout_logfile  = /srv/galaxy/server/handler%(process_num)s.log
-redirect_stderr = true
 ```
 
 Now, save and quit your editor.
