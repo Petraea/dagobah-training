@@ -120,7 +120,7 @@ $ sudo systemctl restart nginx
 
 **Part 2 - Run Galaxy with uWSGI**
 
-If you are still running Galaxy, stop it with `CTRL+C` followed by `sudo -Hu galaxy galaxy` or `sudo -Hu galaxy galaxy --stop-daemon && sudo -Hu galaxy galaxy --daemon`. Then, start it up under uWSGI with:
+If you are still running Galaxy, stop it with `CTRL+C` followed by `sudo -Hu galaxy galaxy` or `sudo -Hu galaxy galaxy --stop-daemon`. Then, start it up under uWSGI with:
 
 ```console
 $ sudo -Hu galaxy sh -c 'cd /srv/galaxy/server && uwsgi --plugin python --virtualenv /srv/galaxy/venv --ini-paste /srv/galaxy/config/galaxy.ini'
