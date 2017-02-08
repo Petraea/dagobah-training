@@ -60,8 +60,8 @@ List of instances for course:
 | 13:15 | Improving the web serving experience with uWSGI | [Slides](https://gvlproject.github.io/dagobah-training/10-uwsgi/uwsgi.html) [Exercise](sessions/10-uwsgi/ex1-uwsgi.md) | (N) |
 | 14:15 | Controlling Galaxy with systemd and supervisor | [Slides](https://gvlproject.github.io/dagobah-training/11-systemd-supervisor/systemd-supervisor.html), [Exercise](sessions/11-systemd-supervisor/ex1-supervisor.md) | (N) |
 | 15:15 | **Afternoon break** | | |
-| 15:30 | Server monitoring and maintenance: Admin UI, Log files, Direct database queries, command line & scripts, what to backup and how | [Slides](https://gvlproject.github.io/dagobah-training/12-monitoring-maintenance/monitoring-maintenance.html) | (S) + (N) |
-| 16:30 | Using and configuring external authentication services | [Slides](https://gvlproject.github.io/dagobah-training/13-external-auth/external-auth.html), [Exercise](sessions/13-external-auth/ex1-pam-auth.md) | (N) |
+| 15:30 | Server monitoring and maintenance: Admin UI, Log files, Direct database queries, command line & scripts, what to backup and how | [Slides](https://gvlproject.github.io/dagobah-training/12-monitoring-maintenance/monitoring-maintenance.html), [Exercise](sessions/12-monitoring-maintenance/ex1-reports.md) | (S) + (N) |
+| 16:30 | Using and configuring external authentication services | [Slides](https://gvlproject.github.io/dagobah-training/13-external-auth/external-auth.html), [PAM Auth Exercise](sessions/13-external-auth/ex1-pam-auth.md), [Upstream Auth Exercise](sessions/13-external-auth/ex2-upstream-auth.md) | (N) |
 | 17:45 | Questions and ad-hoc troubleshooting | | All |
 | 18:00 | Close Day 2 | | All |
 
@@ -99,6 +99,6 @@ List of instances for course:
 | 13:15 | Running Jupyter in Galaxy with Galaxy Interactive Environments | [Exercise](sessions/21-gie/ex1-jupyter.md) | (B) + (N) |
 | 14:30 | When things go wrong: Galaxy Server Troubleshooting | [Slides](https://gvlproject.github.io/dagobah-training/22-troubleshooting/troubleshooting.html) | (N) |
 | 15:30 | **Afternoon break** | | |
-| 15:45 | OPEN: Submitted topics | | |
+| 15:45 | OPEN: Submitted topics | [link to nomination document](https://docs.google.com/document/d/1PTPulqS_Ki7DPmYYoUsdvfHyeJRQBP8jOS6kRl7_fZ4/edit?usp=sharing)| |
 | 16:45 | Galaxy server architecture | [Slides](https://gvlproject.github.io/dagobah-training/23-architecture/galaxy_architecture.html) | | 
 | 18:00 | Wrap up and close | | All |

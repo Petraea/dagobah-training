@@ -279,7 +279,7 @@ x-content-type-options: nosniff
 content-disposition: attachment; filename="Galaxy1-[Pasted_Entry].txt"
 x-frame-options: SAMEORIGIN
 content-type: application/octet-stream
-x-sendfile: /home/galaxyguest/galaxy/database/files/000/dataset_1.dat
+x-sendfile: /srv/galaxy/data/000/dataset_1.dat
 Set-Cookie: galaxysession=c6ca0ddb55be603a151b0873219c10c7d08bb7dcedfebab34f379912ee51df3ae4688ac00316f62b; expires=Wed, 01-Feb-2017 15:13:17 GMT; httponly; Max-Age=7776000; Path=/; Version=1
 
 curl: (18) transfer closed with 13 bytes remaining to read

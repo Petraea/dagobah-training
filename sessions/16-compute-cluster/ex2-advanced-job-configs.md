@@ -99,7 +99,7 @@ Then, map the new tool to the new destination using the tool ID (`<tool id="mult
     </tools>
 ```
 
-And finally, restart Galaxy with `sudo supervisorctl restart all` (as the `galaxyguest` user).
+And finally, restart Galaxy with `sudo supervisorctl restart all` (as the `ubuntu` user).
 
 Now, click the rerun button on the last history item, or click **Multicore Tool** in the tool panel, and then click the tool's Execute button. If successful, your tool's output should now be:
 

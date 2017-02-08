@@ -101,7 +101,7 @@ Have a look at each of the roles in turn, concentrating mainly on the variables 
 
 To run the role we will need a Linux instance (we will use ubuntu 16.04) with a set public/private keypair, or we need to run the playbook "locally" (i.e. on the managed host itself). We will also need to know it's ip address.
 
-* Set all the variables in *group_vars/galaxy_servers.yml* as follows:
+* Set all the variables in *group_vars/galaxyservers.yml* as follows:
 
 ``` yaml
 galaxy_user: galaxy
@@ -129,8 +129,8 @@ galaxy_config:
     tool_dependency_dir: "{{ galaxy_root_dir }}/dependencies"
     admin_users: your@ema.il 											# <---- Put your user email here
     galaxy_data_manager_data_path: "{{ galaxy_root_dir }}/tool-data"
-    job_config_file: "{{ galaxy_config_dir }}/job_conf.xml"
     auth_config_file: "{{ galaxy_config_dir }}/auth_conf.xml"
+    job_config_file: "{{ galaxy_config_dir }}/job_conf.xml"
     nginx_x_accel_redirect_base: /_x_accel_redirect
     nginx_upload_store: "{{ galaxy_root_dir }}/upload_store"
     nginx_upload_path: /_upload
@@ -149,6 +149,8 @@ galaxy_config:
 galaxy_config_files:
   - src: files/galaxy/job_conf.xml
     dest: "{{ galaxy_config_dir }}/job_conf.xml"
+  - src: files/galaxy/auth_conf.xml
+    dest: "{{ galaxy_config_dir }}/auth_conf.xml"
 
 nginx_flavor: extras
 
@@ -211,10 +213,10 @@ The Ansible script will run and display what it's doing as it does. (Always a go
 
 **Part 5 - Upgrade Galaxy**
 
-This playbook was originally written for the 2016 Galaxy Community Conference. At the time, the stable release of Galaxy was 16.04. However, later parts of our workshop need 16.07 (and we should run the newest version of Galaxy anyway!). However, with our Ansible setup, it's trivial to upgrade. To do this, open up `group_vars/galaxyservers.yml`, locate the definition of `galaxy_changeset_id`, and update it:
+This playbook was originally written for the 2016 Galaxy Community Conference. At the time, the stable release of Galaxy was 16.04. For the 2016 Galaxy Admin Training in Utah, we updated it to 16.10. With our Ansible setup, it's trivial to upgrade. To do this, open up `group_vars/galaxyservers.yml`, locate the definition of `galaxy_changeset_id`, and update it:
 
 ```yaml
-galaxy_changeset_id: release_16.07
+galaxy_changeset_id: release_17.01
 ```
 
 Then run the same `ansible-playbook` command:
