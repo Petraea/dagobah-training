@@ -101,7 +101,7 @@ Have a look at each of the roles in turn, concentrating mainly on the variables 
 
 To run the role we will need a Linux instance (we will use ubuntu 16.04) with a set public/private keypair, or we need to run the playbook "locally" (i.e. on the managed host itself). We will also need to know it's ip address.
 
-* Set all the variables in *group_vars/galaxy_servers.yml* as follows:
+* Set all the variables in *group_vars/galaxyservers.yml* as follows:
 
 ``` yaml
 galaxy_user: galaxy
