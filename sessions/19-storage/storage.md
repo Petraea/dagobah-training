@@ -231,4 +231,4 @@ Nested:
 ---
 # Object Store Exercise
 
-[Expanding File Space - Exercise](https://github.com/gvlproject/dagobah-training/blob/master/advanced/19-storage/ex1-objectstore.md)
+[Expanding File Space - Exercise](https://github.com/gvlproject/dagobah-training/blob/master/sessions/19-storage/ex1-objectstore.md)
