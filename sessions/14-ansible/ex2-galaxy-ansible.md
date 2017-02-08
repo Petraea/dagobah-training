@@ -129,8 +129,8 @@ galaxy_config:
     tool_dependency_dir: "{{ galaxy_root_dir }}/dependencies"
     admin_users: your@ema.il 											# <---- Put your user email here
     galaxy_data_manager_data_path: "{{ galaxy_root_dir }}/tool-data"
-    job_config_file: "{{ galaxy_config_dir }}/job_conf.xml"
     auth_config_file: "{{ galaxy_config_dir }}/auth_conf.xml"
+    job_config_file: "{{ galaxy_config_dir }}/job_conf.xml"
     nginx_x_accel_redirect_base: /_x_accel_redirect
     nginx_upload_store: "{{ galaxy_root_dir }}/upload_store"
     nginx_upload_path: /_upload
@@ -149,6 +149,8 @@ galaxy_config:
 galaxy_config_files:
   - src: files/galaxy/job_conf.xml
     dest: "{{ galaxy_config_dir }}/job_conf.xml"
+  - src: files/galaxy/auth_conf.xml
+    dest: "{{ galaxy_config_dir }}/auth_conf.xml"
 
 nginx_flavor: extras
 
