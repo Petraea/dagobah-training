@@ -94,7 +94,7 @@ List of instances for course:
 | 09:00 | Welcome and questions |  | All |
 | 09:15 | Storage management and using heterogeneous storage services | [Slides](https://gvlproject.github.io/dagobah-training/19-storage/storage.html), [Exercise](sessions/19-storage/ex1-objectstore.md) | (N) |
 | 10:30 | **Morning break** | | |
-| 10:50 | Containerize all the things: Galaxy in Docker and Docker in Galaxy | [slides](https://galaxy.slides.com/bgruening/the-galaxy-docker-project) | (B) |
+| 10:50 | Containerize all the things: Galaxy in Docker and Docker in Galaxy | [Docker Slides](https://galaxy.slides.com/bgruening/the-galaxy-docker-project) [Conda Slides](http://galaxy.slides.com/bgruening/deck-7#/) | (B) |
 | 12:30 | **Lunch** | | |
 | 13:15 | Running Jupyter in Galaxy with Galaxy Interactive Environments | [Exercise](sessions/21-gie/ex1-jupyter.md) | (B) + (N) |
 | 14:30 | When things go wrong: Galaxy Server Troubleshooting | [Slides](https://gvlproject.github.io/dagobah-training/22-troubleshooting/troubleshooting.html) | (N) |
