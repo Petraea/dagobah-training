@@ -1,5 +1,5 @@
 layout: true
-class: inverse, top, large
+class: inverse, top
 
 ---
 class: special
