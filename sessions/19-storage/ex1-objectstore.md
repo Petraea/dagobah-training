@@ -39,7 +39,7 @@ Next, create the new config file: `/srv/galaxy/config/object_store_conf.xml`:
             <extra_dir type="job_work" path="/srv/galaxy/server/database/newjobs"/>
         </backend>
         <backend id="olddata" type="disk" order="1">
-            <files_dir path="/srv/galaxy/data"/>
+            <files_dir path="/srv/galaxy/data/datasets"/>
             <extra_dir type="job_work" path="/srv/galaxy/server/database/jobs"/>
         </backend>
     </backends>
