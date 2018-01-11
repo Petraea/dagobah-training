@@ -74,7 +74,7 @@ Create a new Galaxy config file: `/srv/galaxy/config/object_store_conf.xml`:
             <extra_dir type="job_work" path="/srv/galaxy/server/database/newjobs"/>
         </backend>
         <backend id="data" type="disk" weight="0">
-            <files_dir path="/srv/galaxy/data"/>
+            <files_dir path="/srv/galaxy/data/datasets"/>
             <extra_dir type="job_work" path="/srv/galaxy/database/jobs"/>
         </backend>
     </backends>
